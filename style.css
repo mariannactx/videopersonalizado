@@ -1,0 +1,53 @@
+#progress{
+    position: relative;
+}
+
+#canvas {
+    position: absolute;
+    left: -3840px;
+}
+
+.container {
+    padding-top: 80px;
+}
+
+#buttons{
+    margin: 10px 0 0 0;
+}
+
+a.btn{
+    -webkit-appearance: none !important;
+    color: #fff !important;
+}
+
+#passo-2 .form-group{
+    text-align: center;
+}
+
+input[name="formato"]{
+    width: auto;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 2px solid #bbb;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+input[name="formato"]:checked{
+    background: #ccc
+}
+
+input[name="formato"]:before{
+    padding: 15px;
+}
+
+#formato-basica:before{ content: "Playlist básica";}
+#formato-imagens-textos:before{ content: "Imagens e textos";}
+#formato-mosaico:before{ content: "Mosaico de vídeos";}
+
+#recording{
+    margin: 0 auto;
+    display: block; 
+}

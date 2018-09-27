@@ -5,9 +5,9 @@ var video = document.querySelector('video');
 var recordingTimeMS = 5000;
 
 document.getElementById("start").addEventListener("click", start);
-document.getElementById("stop").addEventListener("click", function () {
-    stop(video.srcObject);
-}, false);
+// document.getElementById("stop").addEventListener("click", function () {
+//     stop(video.srcObject);
+// }, false);
 
 function wait(delayInMS) {
     return new Promise(function (resolve) {
@@ -21,13 +21,20 @@ function stop(stream) {
     });
 }
 
-function record(stream, lengthInMS) {
+function record(audio, video, lengthInMS) {
+
+    var stream = new MediaStream();
+
+    // stream.addTrack(audio.getAudioTracks()[0]);
+	stream.addTrack(video.getVideoTracks()[0]);
+    
     var recorder = new MediaRecorder(stream);
     var data = [];
 
     recorder.ondataavailable = function (event) {
         return data.push(event.data);
     };
+
     recorder.start();
     console.log(recorder.state + " for " + lengthInMS / 1000 + " seconds...");
 
@@ -53,13 +60,14 @@ function start() {
     var downloadButton = document.getElementById("download");
     var recording = document.getElementById("recording");
 
-    var stream = canvas.captureStream(25);
+    // var streamAudio = bg.captureStream(25);
+    var streamVideo = canvas.captureStream(25);
 
-    video.srcObject = stream;
-    downloadButton.href = stream;
+    video.srcObject = streamVideo;
+    downloadButton.href = streamVideo;
     video.captureStream = video.captureStream || video.mozCaptureStream;
 
-    record(video.captureStream(), recordingTimeMS).then(function(recordedChunks) {
+    record(streamAudio, streamVideo, recordingTimeMS).then(function(recordedChunks) {
         var recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
         recording.src = URL.createObjectURL(recordedBlob);
         downloadButton.href = recording.src;
