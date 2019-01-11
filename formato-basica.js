@@ -1,8 +1,7 @@
 var vids = [];
-
-
-
 var i = 0;
+var trackList;
+
 function initTrackList(){
     recordingTimeMS = 10000;
 
@@ -23,25 +22,30 @@ function initTrackList(){
                 clearInterval(trackList);
                 return true;
             }
-            console.log(vids[i]);
+            //play no próximo vídeo
             vids[i].play();
         }
 
         vids.push(newVid);
     });
 
+    //play no primeiro vídeo
     vids[i].play();
-    var trackList = setInterval(drawTrackList, 0.01);
+
+    
+    trackList = setInterval(drawTrackList, 0.01);
   
 }
 
 function drawTrackList() {
     var ctx = document.getElementById('canvas').getContext('2d');
     
+    //limpar canvas
     ctx.globalCompositeOperation = 'destination-over';
     ctx.clearRect(0,0,3840,2160); // clear canvas
     ctx.restore();
 
+    //inserir vídeo no canvas 
     ctx.drawImage(vids[i],0, 0, 3840, 2160);
 }
 

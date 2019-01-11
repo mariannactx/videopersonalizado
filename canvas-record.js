@@ -9,19 +9,13 @@ window.onload = function(){
         switch(formato){
             case "basica": initTrackList(); break;
             case "imagens-textos": initImgTxt(); break;
-            case "mosaico": initMosaic(); break;
             default: alert("Selecione o formato desejado no passo 2"); return false;
         }
         
         start();
     });
-
-
-// document.getElementById("stop").addEventListener("click", function () {
-//     stop(video.srcObject);
-// }, false);
-
 }
+
 function wait(delayInMS) {
     return new Promise(function (resolve) {
         return setTimeout(resolve, delayInMS);
@@ -38,8 +32,8 @@ function record(audio, video, lengthInMS) {
 
     var stream = new MediaStream();
 
-    // stream.addTrack(audio.getAudioTracks()[0]);
 	stream.addTrack(video.getVideoTracks()[0]);
+    // stream.addTrack(audio.getAudioTracks()[0]);
     
     var recorder = new MediaRecorder(stream);
     var data = [];
