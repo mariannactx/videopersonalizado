@@ -1,8 +1,12 @@
+.progress{
+    border: 1px solid;
+}
+
 #progress{
     position: relative;
 }
 
-#canvas {
+#canvas, #merge{
     position: absolute;
     left: -3840px;
 }

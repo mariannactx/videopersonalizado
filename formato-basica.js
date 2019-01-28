@@ -1,40 +1,40 @@
-var vids = [];
-var i = 0;
-var trackList;
-
-function initTrackList(){
-    recordingTimeMS = 10000;
-
+async function getTrackList() {    
+    
     var srcs = [
-        "vid/list1.mp4",
+        "vid/list1.mp4",  
+        "vid/vid1.mp4",  
         "vid/list2.mp4",
+        "vid/vid2.mp4",
         "vid/list3.mp4",
     ];
-
-    srcs.forEach(function(src){
-        var newVid = document.createElement("video");
-        newVid.src = src;
-        
-        newVid.onended = function(e){ 
-            i++; 
-
-            if(!vids[i]){
-                clearInterval(trackList);
-                return true;
-            }
-            //play no próximo vídeo
-            vids[i].play();
-        }
-
-        vids.push(newVid);
-    });
-
-    //play no primeiro vídeo
-    vids[i].play();
-
     
-    trackList = setInterval(drawTrackList, 0.01);
-  
+    var players = [];
+    
+    var duration = 0;
+    for(var src in srcs){
+        var video = document.createElement("video");
+        video.id  = src;
+        video.src = srcs[src];
+       
+        duration += await loadMetaData(video);
+
+        players.push(video);
+    };
+
+    return {
+        players: players,
+        draw: drawTrackList,
+        total: duration + 1
+    }
+    
+}
+
+function loadMetaData(video){
+    return new Promise(function(resolve){
+        video.addEventListener('loadedmetadata', function() {
+            resolve(video.duration)
+        })
+    });
 }
 
 function drawTrackList() {
@@ -46,6 +46,6 @@ function drawTrackList() {
     ctx.restore();
 
     //inserir vídeo no canvas 
-    ctx.drawImage(vids[i],0, 0, 3840, 2160);
+    ctx.drawImage(players[i],0, 0, 3840, 2160);
 }
 
