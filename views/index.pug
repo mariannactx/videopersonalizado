@@ -1,0 +1,66 @@
+block content
+  doctype html
+  head
+    meta(charset='utf-8')
+    title  TCEPB | Vídeos personalizados
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='stylesheets/journal.css')
+    script(type='text/javascript', src='javascript/jquery.js')
+    script(type='text/javascript', src='javascript/bootstrap.min.js')
+    script(type='text/javascript', src='javascript/record.js')
+    script(type='text/javascript', src='javascript/canvas-record.js')
+    script(type='text/javascript', src='javascript/audio-record.js')
+    script(type='text/javascript', src='javascript/formato-basica.js')
+    script(type='text/javascript', src='javascript/formato-imagens-texto.js')
+  body
+    header.navbar.navbar-expand-lg.fixed-top.navbar-light.bg-light
+      | TCEPB | Vídeos personalizados
+    main.container
+      form#personalizar-video
+        section.jumbotron
+          h3
+            | Passo 1: 
+            span Defina escola e cidade
+          .form-group
+            select.form-control(name='escola')
+              option(value='1')  Escola 1 - João Pessoa
+              option(value='2')  Escola 2 - Santa Rita
+            select.form-control(name='cidade')
+              option(value='1')  Cidade 1 - João Pessoa
+              option(value='2')  Cidade 2 - Santa Rita
+        section#passo-2.jumbotron
+          h3
+            | Passo 2: 
+            span Escolha o formato do vídeo
+          .row
+            .form-group.col-6
+              input#formato-basica(type='radio', name='formato', value='basica')
+              img.preview(src='img/basica.png')
+            .form-group.col-6
+              input#formato-imagens-textos(type='radio', name='formato', value='imagens-textos')
+              img.preview(src='img/imagens-textos.png')
+        section.jumbotron
+          h3
+            | Passo 3: 
+            span Aplicar personalização
+          canvas#canvas(width='3840', height='2160')
+          #merge
+          .progress
+            #progress-bar.progress-bar.progress-bar-striped.progress-bar-animated.bg-info(role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100', style='width: 0%')
+          #buttons.form-group
+            button#gerar.btn.btn-info(type='button') Gerar vídeo
+            button#exibir.btn.btn-secondary(type='button', data-toggle='modal', data-target='#modal-exibir-video') Exibir
+            a#download.btn.btn-secondary(type='button', name='baixar') Baixar
+            button.btn.btn-secondary(type='button', name='compartilhar') Compartilhar
+    #modal-exibir-video.modal(tabindex='-1', role='dialog')
+      .modal-dialog.modal-lg(role='document')
+        .modal-content
+          .modal-header
+            h5.modal-title Modal title
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+          .modal-body
+            #preview
+          .modal-footer
+            button.btn.btn-secondary.close-modal(type='button', data-dismiss='modal') Cancelar
+
