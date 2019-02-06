@@ -1,0 +1,17 @@
+#popup2.popup.container_16
+    .grid_10
+        img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fechar('popup2');")
+        p Inserir Vídeo Local
+        
+        .container_10
+            input.btnEscolherArquivo(type='submit', value='Escolher arquivo de vídeo no seu computador')
+
+        label.grid_4 Tempo inicial
+        input.grid_4( type="time" name="inicio")
+        label.grid_4 Tempo final
+        input.grid_4(type="time" name="final")
+        
+        .clear
+
+        .container_10
+            input.adicionarPopup(type='submit', name='Adicionar', value='Adicionar')

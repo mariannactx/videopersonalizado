@@ -1,0 +1,13 @@
+#previa.container_16
+    p Prévia do Vídeo Final
+    #imgPrevia.grid_16
+    #form.grid_16
+        form(name='Formulario', action='')
+            p.titulo
+                input(type='text', placeholder='Insira um título para seu vídeo personalizado', required='required')
+            p.descricao
+                textarea(type='text', placeholder='Insira uma breve descrição para seu vídeo personalizado', required='required')
+            .grid_16
+                input.salvar(type='submit', name='Salvar', value='Salvar')
+                input.baixar(type='submit', name='Baixar', value='Baixar')
+                input.finalizar(type='reset', name='FinalizarEdicao', value='Finalizar Edição')
