@@ -1,0 +1,33 @@
+#accordion
+  .card
+    #headingOne.card-header.d-flex.justify-content-around
+      h5.mb-0
+        button.btn.btn-link(type='button', data-toggle='collapse', data-target='#collapseOne', aria-expanded='false', aria-controls='collapseOne')
+          | Collapsible Group Item #1
+    #collapseOne.collapse.show(aria-labelledby='headingOne', data-parent='#accordion')
+      .card-body
+        include passo1
+  .card
+    #headingTwo.card-header.d-flex.justify-content-around
+      h5.mb-0
+        button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+          | Collapsible Group Item #2
+    #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordion')
+      .card-body
+        include passo2
+  .card
+    #headingThree.card-header.d-flex.justify-content-around
+      h5.mb-0
+        button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+          | Collapsible Group Item #3
+    #collapseThree.collapse(aria-labelledby='headingThree', data-parent='#accordion')
+      .card-body
+          include passo3
+  .card
+    #headingFour.card-header.d-flex.justify-content-around
+      h5.mb-0
+        button.btn.btn-link.collapsed(type='button', data-toggle='collapse', data-target='#collapseFour', aria-expanded='false', aria-controls='collapseFour')
+          | Collapsible Group Item #3
+    #collapseFour.collapse(aria-labelledby='headingFour', data-parent='#accordion')
+      .card-body
+        include passo4
