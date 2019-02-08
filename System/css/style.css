@@ -1,0 +1,346 @@
+#void{
+    background-color: none;
+    height: 130px;
+}
+#banner{
+    background-color: rgb(255, 255, 255);
+    height:130px;
+}
+#imagem{
+    background-color: rgb(255, 255, 255);
+    height:130px;
+    display: flex;          /* Tags para posicionar no centro da div*/
+    display: -webkit-flex; /* Garante compatibilidade com navegador Safari. */
+    justify-content: center;  align-items: center;
+}
+/*Classe que esconde a Div*/
+.escondido{
+    display: none;
+}
+p{ 
+    position: relative;
+    display: flex;
+    display: -webkit-flex; 
+    justify-content: center;
+    align-items: center; font-weight: 600;
+}
+hr{
+    clear: both;
+}
+h3{
+    position: relative; margin-top: 320px; text-align: center
+}
+h5{
+    position: relative; text-align: left; padding-left: 10px; top: 0; transform: translateY(-50%);
+}
+h6{
+    position: relative; text-align: left; padding: 10px; top: 0; transform: translateY(-100%);
+}
+#passo1, #passo1_1{
+    background-color: rgb(255, 255, 255);
+    height:60px;
+    text-align: center; position: relative;
+}
+#botoes, #botoes2{
+    margin-left: auto;
+}
+#passo2{
+    background-color: rgb(255, 255, 255);
+    height:60px;
+    text-align: center; position: relative;
+}
+#passo2_2{
+    background-color: rgb(255, 255, 255);
+    height:460px;
+    text-align: center; position: relative;
+}
+#imgCard0, #imgCard1, #imgCard2, #imgCard3, #imgCard4, #imgCard5, #imgCard6, #imgCard7{
+    background-color: rgb(255, 255, 255);
+    width: 180px;
+    height: 105px;
+}
+#card0, #card1, #card2, #card3, #card4, #card5, #card6, #card7{
+    width: 180px; height: 250px;
+    background-color: #DDDDDD;
+    position: relative; margin-left: 35px;
+}
+#btn0, #btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7{
+    margin-top: 60px; position: relative;
+}
+.exibir{
+        width: 80px; height: 30px;
+        border-radius: 6px; border: none;
+        background: #6A8AE5; color: white;
+        cursor: pointer;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 12px; padding: 1px;
+}    
+.exibir:hover{
+        background-color: rgb(16, 117, 163);
+}
+.adicionar{
+    width: 80px; height: 30px;
+    border-radius: 6px; border: none;
+    background: #4DAA4D; color: white;
+    cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 12px; padding: 1px;
+    text-decoration: none;
+}    
+.adicionar:hover{
+    background-color: rgb(105, 199, 110);
+}
+#passo3{
+    background-color: rgb(255, 255, 255);
+    height:60px;
+    text-align: center;
+    position: relative;
+}
+#passo3_3{
+    background-color: rgb(255, 255, 255);
+    height:330px;
+    text-align: center;
+    position: relative;
+}
+#passo4{
+    background-color: rgb(255, 255, 255);
+    height:60px;
+    text-align: center;
+    position: relative;
+}
+#passo4_4{
+    background-color: rgb(255, 255, 255);
+    height:170px;
+    text-align: center; position: relative;
+}
+#botoes3{
+    position: relative;  background-color: white;
+}
+
+.btn{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px;
+    border: none; border-radius: 10px;
+    cursor: pointer; background: #CE7824; color: white;
+    text-transform: uppercase; font-weight: 600;   
+    text-decoration: none;
+    padding: 20px; position: relative;
+}
+.btn:hover{
+    background: rgb(245, 56, 22);
+}
+#previa{
+    background-color: rgb(255, 255, 255);
+    height:650px;
+    text-align: center; position: relative;
+    top: 0%;left: 50%;
+    transform: translate(-50%, 0%);
+    margin-left: auto;
+}
+#imgPrevia{
+    height: 300px;
+    display: flex; display: -webkit-flex; 
+    justify-content: center;
+    align-items: center; position: relative;
+}
+h2{
+    margin-top: 55px;
+    color:black;
+}
+#form{
+    margin-top: 180px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px; position: absolute;
+    margin-left: auto;       
+}
+input, textarea{
+    width: 600px; padding: 0 10px 10px 10px; border: thin solid;
+}
+.Descricao textarea{
+    line-height: 20px; width: 600px; height: 80px;
+}
+#botoes4{
+    margin-left: 140px;
+}
+.salvar{
+    width: 110px;  height: 40px;
+    border-radius: 10px; border: none;
+    background: #ce7824; color: white; cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px; padding: 1px;
+}
+.salvar:hover{
+    background-color: rgb(245, 56, 22);
+}
+.baixar{
+    width: 110px; height: 40px; border-radius: 10px;
+    border: none; background: #5FDD5F;
+    color: white; cursor: pointer;   
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px; padding: 1px;
+}
+.baixar:hover{
+    background-color: rgb(10, 145, 75);
+}
+.finalizar{
+    width: 110px;  height: 40px;  border-radius: 10px;
+    border: 1px solid;  background: none;
+    color: rgb(78, 78, 78);  cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px;  padding: 1px;
+}
+.finalizar:hover{
+    background-color: rgb(170, 160, 160); color: white;
+}
+    /*Css dos Pop-Ups*/
+#popup1, #popup2, #popup3, #popup4{
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto; height: 550px;
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    border: solid 1px rgb(143, 143, 143);
+    display: none;
+}
+/*Bordas para melhor visualização do dev*/
+#imgPopup1, #imgPopup2, #imgPopup3{
+    width: 500px;  height: 250px; border: purple 1px solid
+}
+#img1Popup4_1, #img2Popup4_1, #img3Popup4_1, #img4Popup4_2, #img5Popup4_2, #img6Popup4_2{
+    width: 180px;  height: 75px; border: purple 1px solid
+}
+#CardPopup1{
+    height: 350px; width: 500px;
+    border: solid 1px #DDDDDD;
+    background-color: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    margin-left: auto;
+}
+#CardPopup2{
+    height: 350px;  width: 500px;
+    background-color: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    margin-left: auto;
+}
+.btnEscolherArquivo{
+    width: 300px; height: 40px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px; padding: 10px;
+    border-radius: 10px;
+    border: none; background: #6A8AE5;
+    color: white; cursor: pointer;
+    position: relative;
+    top: 0; left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 20px;
+}
+.btnEscolherArquivo:hover{
+    background-color: rgb(16, 117, 163);
+}
+.sair, .seta{
+    float: right;
+    padding: 5px 5px 0 0;
+}
+
+
+#btnPopup1, #btnPopup2, #btnPopup3{
+    margin-top: 50px;
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translate(-50%, 0%);
+}
+.exibirPopup{
+    width: 120px;  height: 45px;
+    border-radius: 6px;
+    border: none; background: #6A8AE5;
+    color: white; cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px; padding: 1px;
+}    
+.exibirPopup:hover{
+    background-color: rgb(16, 117, 163);
+}
+.adicionarPopup{
+width: 120px; height: 45px;
+border-radius: 6px;
+border: none; background: #4DAA4D;
+color: white; cursor: pointer;
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: 18px; padding: 1px;
+}    
+.adicionarPopup:hover{
+background-color: rgb(105, 199, 110);
+}
+#CardPopup3{
+    height: 350px; width: 500px;
+    border: solid 1px #282828;
+    background-color: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    margin-left: auto;
+}
+#selectPopup{
+    width: 560px; 
+    top: 0; left: 50%;
+    transform: translate(-50%, 0);
+    position: relative;
+    margin-left: auto;
+    margin-bottom: 20px;
+}
+.selecao{
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 200px;  height: 40px;
+    padding: 0px 0px 0px 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;  margin-left: 50px;
+}
+#formPopup3{
+    margin-top: 30px;
+    top: 0; left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 14px; position: absolute;
+    margin-left: auto;
+}
+#CardPopup4_1{
+    height: 240px;    
+    background-color: none;
+    position: relative;
+    margin-left: auto;
+
+}
+#CardPopup4_2{
+    height: 240px;  
+    background-color: none;
+    position: relative;
+    margin-left: auto;
+    margin-top: -20px;
+}
+#img1Popup, #img2Popup, #img3Popup, #img4Popup, #img5Popup, #img6Popup{
+    width: 180px; height: 170px;
+    background-color: #DDDDDD;
+    position: relative;
+    left: 50px;   
+}
+.adicionarPopup4, .assistir4{
+    width: 60px; height: 25px;
+    border-radius: 3px; border: none;
+    background: #4DAA4D; color: white;
+    cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 12px; padding: 1px;
+}    
+.adicionarPopup:hover, .assistir:hover, .adicionarPopup4:hover, .assistir4:hover {
+    background-color: rgb(105, 199, 110);
+}
+#btn1Popup, #btn2Popup, #btn3Popup, #btn4Popup, #btn5Popup, #btn6Popup{
+    margin-top:-10px ;
+    margin-left: 50px;  
+}
