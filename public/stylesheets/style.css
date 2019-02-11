@@ -28,22 +28,21 @@ h2 {
 }
 
 p{ 
-    position: relative;
-    display: flex;
-    display: -webkit-flex; 
-    justify-content: center;
-    align-items: center; font-weight: 600;
+    margin: 1em 0;
+    font-weight: 600;
 }
 
-.passo {
+.passo{
     background-color: rgb(255, 255, 255);
     text-align: center; 
     position: relative;
     clear:both;
-    padding-bottom: 20px;
     border-bottom: 1px solid #000;
 }
 
+.passo .passo-body{
+    padding-bottom: 20px;
+}
 .clear{
     clear:both;
 }
@@ -232,8 +231,20 @@ p{
     background-position: center;
     background-repeat: no-repeat;
     display: inline-block;
-    margin-bottom: -45px;
+    margin-top: -45px;
+    transition: all .5s;
+    -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
 }
+
+a.seta.collapsed {
+    -moz-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+}   
 
 .adicionarPopup{
     margin-top: 20px;

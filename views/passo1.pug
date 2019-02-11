@@ -1,9 +1,8 @@
 #passo1.passo.container_16
     .grid_16
-        a.seta(href='#')
-    .grid_16
         p Passo 1: Escolha um modelo de vídeo
-    .grid_16
+        a.seta.collapsed(data-toggle='collapse', data-target='#passo1-body', aria-expanded='false', aria-controls='passo1-body')
+    #passo1-body.passo-body.collapse.grid_16
         a.btn(type='button', href='#', name='VideoPadrao') Vídeo Padrão
         a.btn(type='button', href='#', name='VideoPersonalizado') Vídeo Personalizado
     .clear

@@ -1,9 +1,8 @@
 #passo4.passo.container_16   
     .grid_16
-        a.seta(href='#')
-    .grid_16
         p Passo 4: Adicione um novo vídeo
-    .grid_16
+        a.seta.collapsed(data-toggle='collapse', data-target='#passo4-body', aria-expanded='false', aria-controls='passo4-body')
+    #passo4-body.passo-body.collapse.grid_16
         a(href="javascript: abrir('popup2');")
             img(src='images/envie.jpg', width='185px', height='90px')
             p Envie um vídeo
