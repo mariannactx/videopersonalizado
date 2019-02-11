@@ -61,5 +61,5 @@ function esconderDivPasso3(){
 }
 
 function esconderDivPasso4(){
-    passo4_4.classList.add("escondido");     
+    passo4_4.classList.add("escondido");    
 }
