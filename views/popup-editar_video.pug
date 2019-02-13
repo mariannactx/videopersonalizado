@@ -1,17 +1,25 @@
-#popup1.popup.container_16
+#popup-edit.popup.container_16
     .grid_10
-        img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fechar('popup1');")
-        p Editar Vídeo
-        a(href='#')
-            img(src='images/videoPopup.jpg', width='500px', height='250px')
-        
-        label.grid_4 Tempo inicial
-        input.grid_4( type="time" name="inicio")
-        label.grid_4 Tempo final
-        input.grid_4(type="time" name="final")
-        
-        .clear
+        img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fechar('edit');")
+        p Editar vídeo da playlist
+        .container_10 
+            p#status-popup-edit.status.grid_4 Vídeo carregando, aguarde...
+            video.previa#previa-popup-edit(
+                controls, 
+                data-status="status-popup-edit"
+            )
+        #minutagem.grid_5
+            .container_5
+                label Tempo inicial
+                input#inicio-popup-edit(type="time" name="inicio")
+            .container_5
+                label Tempo final
+                input#final-popup-edit(type="time" name="final")
 
+            input#video-id-popup-edit(type="hidden")
         .container_10
-            input.adicionarPopup(type='submit', name='Adicionar', value='Adicionar')
-        
+            input.adicionarPopup(
+                type='submit', 
+                value='Adicionar',
+                onclick='save()'
+            )

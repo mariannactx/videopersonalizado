@@ -67,12 +67,13 @@ p{
 }
 
 .adicionar{
-    width: 80px; height: 30px;
-    border-radius: 6px; border: none;
-    background: #4DAA4D; color: white;
+    border-radius: 6px;
+    background: #4DAA4D;
+    color: #fff;
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 12px; padding: 1px;
+    font-size: 12px;
+    padding: 8px;
 }    
 
 .adicionar:hover{
@@ -85,8 +86,8 @@ p{
     border: none; 
     border-radius: 10px;
     cursor: pointer; 
-    background: #CE7824; 
-    color: white;
+    background: rgba(206, 120, 36, 0.8); 
+    color: #fff;
     text-transform: uppercase; 
     font-weight: 600;   
     text-decoration: none;
@@ -95,19 +96,17 @@ p{
     display: inline-block;
     margin: 10px; 
     position: relative;
+    transition: all .5s;
 }
 
 .btn:hover{
-    background: rgb(245, 56, 22);
+    background: rgba(206, 120, 36); 
 }
 
 #previa{
-    background-color: rgb(255, 255, 255);
-    height:650px;
-    text-align: center; position: relative;
-    top: 0%;left: 50%;
-    transform: translate(-50%, 0%);
-    margin-left: auto;
+    height: auto;
+    width: 430px;
+    text-align: center;
 }
 
 #form{
@@ -126,21 +125,13 @@ p{
     line-height: 20px; 
 }
 
-.salvar{
-    background: #ce7824; 
-    color: white;
-}
 
-.salvar:hover{
-    background-color: rgb(245, 56, 22);
-}
-
-.baixar{
+#baixar{
     background: #5FDD5F;
     color: white; 
 }
 
-.baixar:hover{
+#baixar:hover{
     background-color: rgb(10, 145, 75);
 }
 
@@ -176,7 +167,11 @@ p{
     display: inline-block;
 }
 
-.btnEscolherArquivo{
+label.grid_4 {
+    margin: 0 10px;
+}
+
+#upload{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 14px;
     padding: 10px;
@@ -188,18 +183,24 @@ p{
     margin-bottom: 20px;
 }
 
-.btnEscolherArquivo:hover{
+#upload:hover{
     background-color: rgb(16, 117, 163);
 }
 
-.sair, .seta{
-    float: right;
-    padding: 5px 5px 0 0;
+.status{
+    display: none;
 }
 
-.sair {
-    padding-right: 20px;
+.previa{
+    max-width: 80%;
+    height: 300px;
 }
+.sair, .seta{
+    float: right;
+    padding: 0;
+}
+
+.sair {position: relative;right: 20px;}
 
 .seta{
     width: 55px;
@@ -209,7 +210,8 @@ p{
     background-position: center;
     background-repeat: no-repeat;
     display: inline-block;
-    margin-top: -45px;
+    margin-top: -50px;
+    padding: 0;
     transition: all .5s;
     -moz-transform: scaleY(-1);
     -o-transform: scaleY(-1);
@@ -237,5 +239,130 @@ a.seta.collapsed {
 }  
 
 .adicionarPopup:hover{
-background-color: rgb(105, 199, 110);
+    background-color: rgb(105, 199, 110);
+}
+
+#minutagem {
+    float:none;
+    margin: 0 auto;
+}
+
+#minutagem label {
+    margin: 0 10px;
+    width: 100px;
+}
+
+
+/* record */
+.progress{
+    border: 1px solid;
+}
+
+#progress{
+    position: relative;
+}
+
+#canvas, #merge{
+    position: absolute;
+    left: -3840px;
+}
+
+.container {
+    padding-top: 80px;
+}
+
+#buttons{
+    margin: 10px 0 0 0;
+}
+
+#recording{
+    margin: 0 auto;
+    display: block; 
+}
+
+#timeline{
+    width: 100%;
+    height: 150px;
+    margin: 20px 0 0 0;
+    border-radius: 10px; 
+    border: 1px solid #000;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#timeline > div{
+    flex: 1 1 auto;
+    max-width: 50%;
+    height: 100%;
+    background: #000;
+    border-radius: 10px; 
+    position: relative;
+}
+
+#timeline > div > .fas {
+    position: absolute;
+    color: #fff;
+    font-size: 20pt;
+}
+
+#timeline > div > .fa-times {
+    top: 15px;
+    right: 20px;
+}
+
+#timeline > div > .fa-edit {
+    top: calc(50% - 6pt);
+    left: calc(50% - 6pt);
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #369;
+    border-color: #369;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #29537c;
+    border-color: #264d73
+}
+
+.btn-warning {
+    color: #222;
+    background-color: #F5E625;
+    border-color: #F5E625
+}
+
+.btn-warning:hover {
+    color: #222;
+    background-color: #e9d90b;
+    border-color: #ddce0a
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #22B24C;
+    border-color: #22B24C
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #1c923e;
+    border-color: #1a873a
+}
+
+
+.btn-danger {
+    color: #fff;
+    background-color: #f56200;
+    border-color: #f56200
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #cf4c00;
+    border-color: #cf4c00
 }

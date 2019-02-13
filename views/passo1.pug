@@ -1,8 +1,27 @@
 #passo1.passo.container_16
     .grid_16
         p Passo 1: Escolha um modelo de vídeo
-        a.seta.collapsed(data-toggle='collapse', data-target='#passo1-body', aria-expanded='false', aria-controls='passo1-body')
-    #passo1-body.passo-body.collapse.grid_16
-        .btn(onclick="modelo('playlist');" name='VideoPadrao') Vídeo Padrão
-        .btn(onclick="modelo('personalizado');" name='VideoPersonalizado') Vídeo Personalizado
+        a.seta(data-toggle='collapse', data-target='#passo1-body', aria-expanded='false', aria-controls='passo1-body')
+    #passo1-body.passo-body.collapse.show.grid_16
+        .btn(
+            name='acervo'
+            data-toggle='collapse', 
+            data-target='#passo2-body', 
+            aria-expanded='false', 
+            aria-controls='passo2-body'
+        ) Acervo de vídeos personalizados
+        .btn(
+            onclick="setFormato('playlist');"
+            data-toggle='collapse', 
+            data-target='#passo3-body', 
+            aria-expanded='false', 
+            aria-controls='passo3-body'
+        ) Playlist de vídeos
+        .btn(
+            onclick="setFormato('titulo-imagem');",
+            data-toggle='collapse', 
+            data-target='#passo3-body', 
+            aria-expanded='false', 
+            aria-controls='passo3-body'
+        ) Playlist com título e imagem
     .clear
