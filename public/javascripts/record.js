@@ -34,10 +34,21 @@ function start(dados) {
     
     recording(dados)
         .then( unmerged => merge(unmerged, dados.total) )
-        .then( merged => {
+        .then( async merged => {
+
+            if(merged.unmerged){
+                merged = await merge(merged.unmerged, dados.total);
+
+                if(merged.unmerged){
+                    alert("Ocorreu um erro durante a renderização. Atualize a página e tente novamente.");
+
+                    return false;
+                }
+            }
+
             clearInterval(progress);
             var src = getChunksUrl(merged);
-            finalizar(src)
+            finalizar(src);
     });
     
 }
@@ -103,7 +114,7 @@ async function merge(unmerged, total){
     }  
     
     recorder.onerror = function (event) {
-        console.log("video final em nome de jesus", event);
+        console.log("Merging error", event);
     };
     
     recorder.start();
@@ -120,7 +131,11 @@ async function merge(unmerged, total){
     });
     
     return Promise.all([stopped, recorded]).then(function () {
-        console.log("Video and audio merge into a unique source", chunks);        
+        console.log("Video and audio merge into a unique source", chunks);
+        
+        if(!chunks[0].size)
+            return {unmerged: unmerged}
+
         return chunks;
     });
 } 

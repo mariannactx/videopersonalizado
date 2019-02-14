@@ -7,12 +7,15 @@ function recordingAudio(players, total){
         // var offline = new OfflineAudioContext(2,44100*40,44100);
         var offline = new OfflineAudioContext(2,44100 * total, 44100);
         
-        var offset = 0;
+        var when = 0;
         for(var p in players){  
+           
             // gera um buffer para cada áudio
-            offset = await getFile(players[p].src).then(track => playTrack(track, offline, offset));
+            var buffer = await getFile(players[p].audio.src)
+            .then(track => playTrack(track, offline, when, players[p].offset, players[p].duration));
+            
             //insere a duração do vídeo para ter um delay no start do próximo vídeo
-            offset += players[p].duration;
+            when += players[p].duration;
         }; 
         
         offline.startRendering().then(function(renderedBuffer) {
@@ -57,9 +60,8 @@ async function getFile(filepath) {
     return audioBuffer;
 }
 
-let offset = 0;
 // create a buffer, plop in data, connect and play -> modify graph here if required
-function playTrack(audioBuffer, offline, offset) {
+function playTrack(audioBuffer, offline, when, offset, duration) {
     
     // check if context is in suspended state (autoplay policy)
     if (audioCtx.state === 'suspended')
@@ -68,7 +70,9 @@ function playTrack(audioBuffer, offline, offset) {
     const trackSource = offline.createBufferSource();
     trackSource.buffer = audioBuffer;
     trackSource.connect(offline.destination)
-    trackSource.start(offset);
+
+    //AudioBufferSourceNode.start([when][, offset][, duration]);
+    trackSource.start(when, offset, duration);
     
-    return offset;
+    return duration;
 }

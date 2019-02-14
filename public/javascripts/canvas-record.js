@@ -22,8 +22,8 @@ async function recordingVideo(dados){
     
     for (var p in players){
         
-        players[p].play();        
-        var played = await delayVideo(players[p]);
+        players[p].video.play();        
+        var played = await delayVideo(players[p].video);
         
         i++; 
     }
@@ -47,6 +47,7 @@ async function recordingVideo(dados){
 function delayVideo(video){
     return new Promise(function(resolve){
         video.onended = resolve;
+        video.onpause = resolve;
     })
 }
 
