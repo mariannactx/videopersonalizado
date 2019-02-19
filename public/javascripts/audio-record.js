@@ -2,8 +2,6 @@ const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 
 function recordingAudio(players, total){
-    console.log(players, total);
-
     return new Promise(async function (resolve){
         //criar um contexto de áudio para mesclar todos os áudios
         // var offline = new OfflineAudioContext(2,44100*40,44100);
@@ -11,7 +9,6 @@ function recordingAudio(players, total){
         
         var when = 0;
         for(var p in players){  
-            console.log(when, players[p]);
 
             // gera um buffer para cada áudio
             var buffer = await getFile(players[p].audio.src)
@@ -57,14 +54,10 @@ function recordingAudio(players, total){
 
 // function for fetching the audio file and decode the data
 async function getFile(filepath) {
-    
-    console.log(filepath);
-    const response = await fetch(filepath);
-    const arrayBuffer = await response.arrayBuffer();
-    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-    console.log(audioBuffer);
-
-    return audioBuffer;
+    return fetch(filepath)
+    .then(file => file.arrayBuffer())
+    .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
+    .catch( error => { console.log(error); });
 }
 
 // create a buffer, plop in data, connect and play -> modify graph here if required
@@ -78,7 +71,6 @@ function playTrack(audioBuffer, offline, when, offset, duration) {
     trackSource.buffer = audioBuffer;
     trackSource.connect(offline.destination)
 
-    console.log(when, offset, duration);
     //AudioBufferSourceNode.start([when][, offset][, duration]);
     trackSource.start(when, offset, duration);
     
