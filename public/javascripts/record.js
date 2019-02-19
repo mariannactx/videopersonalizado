@@ -22,6 +22,7 @@ window.onload = async function(){
             case "playlist": dados = await getTrackList(); break;
         }
         
+        console.log(dados);
         start(dados);
     });
 }
@@ -74,8 +75,12 @@ function recording(dados){
         
         players = dados.players;
         
+        console.log(players);
+
         var recordedVideo = await recordingVideo(dados);
+        console.log(recordedVideo);
         var recordedAudio = await recordingAudio(players, dados.total);
+        console.log(recordedAudio);
 
         resolve({
             video: recordedVideo,
