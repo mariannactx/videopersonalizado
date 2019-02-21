@@ -3,7 +3,7 @@
         img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fechar('upload');")
         p Inserir Vídeo Local
         .container_10
-            input#upload(type='file', value='Escolher arquivo de vídeo no seu computador')
+            input#upload(type='file', value='Escolher arquivo de vídeo no seu computador', onchange='setPreviaUpload')
         .container_10 
             p#status-popup-upload.status.grid_4 Vídeo carregando, aguarde...
             video.previa#previa-popup-upload(

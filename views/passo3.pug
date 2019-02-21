@@ -16,7 +16,10 @@
                             img(src="/videos/"+video.thumb, width='100%', height='105px')
                         b=video.titulo
                         div
-                            span.adicionar(onclick="setPreviaAcervo('"+video.arquivo+"');") Adicionar
+                            span.adicionar(
+                                data-id=video.id,
+                                data-arquivo=video.arquivo,
+                                onclick="popupAcervo(this.dataset);") Adicionar
         #timeline.container_16     
         .container_16
             #gerar.btn.btn-info Gerar vídeo  

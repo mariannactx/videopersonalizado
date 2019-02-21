@@ -1,7 +1,7 @@
 window.addEventListener("load", function(){
     byId("upload").addEventListener("change", setPreviaUpload);
 
-    var popups = ['upload', 'edit', 'acervo'];
+    var popups = ['upload', 'edit'];
     popups.forEach(function(popup){
         byId("previa-popup-" + popup).addEventListener("canplaythrough", playPrevia);
     })
@@ -27,9 +27,65 @@ function fechar(popup){
     
 }
 
-function setPreviaAcervo(arquivo){
-    var path = "/videos/" + arquivo;
-    setPrevia('acervo', path);
+var acervo = [];
+function popupAcervo(video){
+
+    if(acervo[video.id]){
+        setPrevia('acervo', acervo[video.id].src);
+        return true;
+    }
+    
+    var path = "/videos/" + video.arquivo;
+    var progressBar = byId("progress-acervo");
+    
+    //carregar blob de vídeo para permitir tocar sem travar
+    var req = new XMLHttpRequest();
+    req.open('GET', path, true);
+    req.responseType = 'blob';
+
+    req.onload = function() {
+
+        //onload é disparado em qualquer status, então é preciso
+        //checar se o status é 200
+        if (this.status === 200) {
+            var blob = this.response;
+            var src = URL.createObjectURL(blob);
+
+            acervo[video.id] = {
+                path: path,
+                blob: blob,
+                src: src
+            };
+            
+            setPrevia('acervo', src);
+            
+            return true;
+        }
+
+        console.log("Not status 200 on load:", this);
+    }
+
+    req.onerror = function() {
+        console.log("Error:", this);
+    }
+
+    req.onprogress = function (e) {
+        if (e.lengthComputable) {
+            progressBar.max = e.total;
+            progressBar.value = e.loaded;
+        }
+    }
+
+    req.onloadstart = function (e) {
+        progressBar.value = 0;
+    }
+
+    req.onloadend = function (e) {
+        progressBar.value = e.loaded;
+    }
+
+    req.send();
+
     abrir('acervo');
 }
 
