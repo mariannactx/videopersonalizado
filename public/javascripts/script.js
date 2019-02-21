@@ -36,6 +36,7 @@ function popupAcervo(video){
     }
     
     var path = "/videos/" + video.arquivo;
+    byId("status-popup-acervo").style.display = "block";   
     var progressBar = byId("progress-acervo");
     
     //carregar blob de vídeo para permitir tocar sem travar
