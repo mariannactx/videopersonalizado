@@ -51,22 +51,26 @@ function recordingAudio(players, total){
     });
 }
 
-
 // function for fetching the audio file and decode the data
 async function getFile(filepath) {
-
-    console.log(filepath);
 
     return fetch(filepath)
     .then(file => {
         console.log(file);
-        var arrayBuffer = file.arrayBuffer().catch( error => { console.log(error) });
+        var arrayBuffer = file.arrayBuffer()
+        .catch( error => { console.log(error) });
         return arrayBuffer;
     })
     .then(arrayBuffer => {
         console.log(arrayBuffer);
-        var audioBuffer = audioCtx.decodeAudioData(arrayBuffer).catch( error => { console.log(error) });
 
+        var audioBuffer = audioCtx.decodeAudioData(arrayBuffer)
+        .catch( error => { console.log(error) });
+
+        return audioBuffer;
+        
+    })
+    .then(audioBuffer => {
         console.log(audioBuffer);
         return audioBuffer;
     })
