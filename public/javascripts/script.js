@@ -35,7 +35,8 @@ function popupAcervo(video){
         return true;
     }
     
-    var path = "/videos/" + video.arquivo;
+    // var path = "/videos/" + video.arquivo;
+    var path = "videos/" + video.arquivo;
     byId("status-popup-acervo").style.display = "block";   
     var progressBar = byId("progress-acervo");
     
@@ -164,9 +165,10 @@ function save(){
     fechar("edit");
 }
 
-function acervo(video){
+function previaSalvos(video){
     iniciar();
-    finalizar("/videos/" + video);
+    // finalizar("/videos/" + video);
+    finalizar("videos/" + video);
 }
 
 function iniciar(){
