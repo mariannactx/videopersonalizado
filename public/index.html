@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sistema personalizado</title>
+    <meta charset="utf-8" />
+    <!--bibliotecas css-->
+    <link rel="stylesheet" href="stylesheets/960.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
+    <!--bibliotecas js-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
+    
+    <!-- frontend -->
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="javascripts/script.js"></script>
+    
+    <!--gravacao-->
+    <script src="javascripts/record.js"></script>
+    <script src="javascripts/formato-basica.js"></script>
+    <script src="javascripts/canvas-record.js"></script>
+    <script src="javascripts/audio-record.js"></script>
+  </head>
+  <body>
+    <div class="container_16" id="standard">
+      <header>
+        <div class="grid_4" id="logo"><a href="/"><img src="images/tce.png"></a></div>
+        <div class="grid_12" id="banner">
+          <h2> Sistema de Personalização de Palestras</h2>
+        </div>
+        <div class="clear"></div>
+      </header>
+      <div class="passo container_16" id="passo1">
+        <div class="grid_16">
+          <p>Passo 1: Escolha um modelo de vídeo</p><a class="seta" data-toggle="collapse" data-target="#passo1-body" aria-expanded="false" aria-controls="passo1-body"></a>
+        </div>
+        <div class="passo-body collapse show grid_16" id="passo1-body">
+          <div class="btn" name="acervo" data-toggle="collapse" data-target="#passo2-body" aria-expanded="false" aria-controls="passo2-body">Acervo de vídeos personalizados</div>
+          <div class="btn" onclick="setFormato('playlist');" data-toggle="collapse" data-target="#passo3-body" aria-expanded="false" aria-controls="passo3-body">Playlist de vídeos</div>
+          <div class="btn" onclick="setFormato('titulo-imagem');" data-toggle="collapse" data-target="#passo3-body" aria-expanded="false" aria-controls="passo3-body">Playlist com título e imagem</div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="passo container_16" id="passo2">
+        <div class="grid_16">
+          <p>Passo 2: Acervo de vídeos personalizados</p><a class="seta collapsed" data-toggle="collapse" data-target="#passo2-body" aria-expanded="false" aria-controls="passo2-body"></a>
+        </div>
+        <div class="passo-body collapse grid_16" id="passo2-body">
+          <div class="container_16">
+            <div class="video grid_4"><a href="#"><img src="videos/ferramentas_de_controle.png" width="100%" height="105px"></a><b>Título</b>
+              <h5>Descrição</h5>
+              <div>
+                <input class="adicionar" type="submit" name="Selecionar" value="Selecionar" onclick="previaSalvos('ferramentas_de_controle.mp4')">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="passo container_16" id="passo3">
+        <div class="grid_16">
+          <p>Passo 3: Adicione vídeos à sua playlist</p><a class="seta collapsed" data-toggle="collapse" data-target="#passo3-body" aria-expanded="false" aria-controls="passo3-body"></a>
+        </div>
+        <div class="passo-body collapse grid_16" id="passo3-body">
+          <div class="container_16"><a href="javascript: abrir('upload');"><img src="images/envie.jpg" width="185px" height="90px"></a>
+            <p>Envie um vídeo</p>
+          </div>
+          <div class="container_16">
+            <p>Vídeos institucionais</p>
+            <div class="video grid_4"><a href="#"><img src="videos/ferramentas_de_controle.png" width="100%" height="105px"></a><b>Título</b>
+              <div><span class="adicionar" data-id="id" data-arquivo="ferramentas_de_controle.mp4" onclick="popupAcervo(this.dataset);">Adicionar</span></div>
+            </div>
+          </div>
+          <div class="container_16" id="timeline">    </div>
+          <div class="container_16">
+            <div class="btn btn-info" id="gerar">Gerar vídeo  </div>
+          </div>
+        </div>
+      </div>
+      <div class="passo container_16" id="passo4">  
+        <div class="grid_16">
+          <p>Passo 4: Download do vídeo personalizado</p><a class="seta collapsed" data-toggle="collapse" data-target="#passo4-body" aria-expanded="false" aria-controls="passo4-body"></a>
+        </div>
+        <div class="passo-body collapse grid_16" id="passo4-body">
+          <div class="grid_16">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-info" id="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="container_16">
+            <canvas id="canvas" width="3840" height="2160"></canvas>
+            <div id="merge"></div>
+          </div>
+          <p>Prévia do Vídeo Final</p>
+          <div class="container_16">
+            <video id="previa" controls></video>
+          </div>
+          <div class="grid_16">
+            <form id="form" name="Formulario" action="">
+              <p class="titulo">
+                <input type="text" placeholder="Insira um título para seu vídeo personalizado" required="required">
+              </p>
+              <p class="descricao">
+                <textarea type="text" placeholder="Insira uma breve descrição para seu vídeo personalizado" required="required"></textarea>
+              </p>
+              <div class="grid_16">
+                <input class="btn salvar" type="submit" name="Salvar" value="Salvar">
+              </div>
+            </form><a class="btn" id="baixar">Baixar</a>
+            <input class="btn finalizar" type="reset" name="FinalizarEdicao" value="Finalizar Edição">
+          </div>
+        </div>
+      </div>
+      <div class="popup container_16" id="popup-edit">
+        <div class="grid_10"><img class="sair" id="sair" src="images/sair.png" width="25px" height="25px" onclick="fechar('edit');">
+          <p>Editar vídeo da playlist</p>
+          <div class="container_10"> 
+            <p class="status grid_4" id="status-popup-edit">Vídeo carregando, aguarde...</p>
+            <video class="previa" id="previa-popup-edit" controls data-status="status-popup-edit"></video>
+          </div>
+          <div class="grid_5" id="minutagem">
+            <div class="container_5">
+              <label>Tempo inicial</label>
+              <input id="inicio-popup-edit" type="time" name="inicio">
+            </div>
+            <div class="container_5">
+              <label>Tempo final</label>
+              <input id="final-popup-edit" type="time" name="final">
+            </div>
+            <input id="video-id-popup-edit" type="hidden">
+          </div>
+          <div class="container_10">
+            <input class="adicionarPopup" type="submit" value="Adicionar" onclick="save()">
+          </div>
+        </div>
+      </div>
+      <div class="popup container_16" id="popup-upload">
+        <div class="grid_10"><img class="sair" id="sair" src="images/sair.png" width="25px" height="25px" onclick="fechar('upload');">
+          <p>Inserir Vídeo Local</p>
+          <div class="container_10">
+            <input id="upload" type="file" value="Escolher arquivo de vídeo no seu computador" onchange="setPreviaUpload">
+          </div>
+          <div class="container_10"> 
+            <p class="status grid_4" id="status-popup-upload">Vídeo carregando, aguarde...</p>
+            <video class="previa" id="previa-popup-upload" controls data-status="status-popup-upload"></video>
+          </div>
+          <div class="grid_5" id="minutagem">
+            <div class="container_5">
+              <label>Tempo inicial</label>
+              <input id="inicio-popup-upload" type="time" name="inicio">
+            </div>
+            <div class="container_5">
+              <label>Tempo final</label>
+              <input id="final-popup-upload" type="time" name="final">
+            </div>
+          </div>
+          <div class="container_10">
+            <input class="adicionarPopup" type="submit" value="Adicionar" onclick="add('upload')">
+          </div>
+        </div>
+      </div>
+      <div class="popup container_16" id="popup-acervo">
+        <div class="grid_10"><img class="sair" id="sair" src="images/sair.png" width="25px" height="25px" onclick="fechar('acervo');">
+          <p>Adicionar vídeo institucional</p>
+          <div class="container_10"> 
+            <p class="status grid_4" id="status-popup-acervo">Vídeo carregando, aguarde... 
+              <progress id="progress-acervo"></progress>
+            </p>
+            <video class="previa" id="previa-popup-acervo" controls data-status="status-popup-acervo"></video>
+          </div>
+          <div class="grid_5" id="minutagem">
+            <div class="container_5">
+              <label>Tempo inicial</label>
+              <input id="inicio-popup-acervo" type="time" name="inicio">
+            </div>
+            <div class="container_5">
+              <label>Tempo final</label>
+              <input id="final-popup-acervo" type="time" name="final">
+            </div>
+          </div>
+          <div class="container_10">
+            <input class="adicionarPopup" type="submit" value="Adicionar" onclick="add('acervo')">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
