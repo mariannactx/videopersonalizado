@@ -1,35 +1,36 @@
 header{
-    padding: 20px 0;
+    height: 60px;
     border-bottom: 1px solid #000;
-}
-
-#banner{
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    height: 130px;
+    background-color: rgb(61, 61, 61);
 }
 
 h2 {
-    line-height: 130px;
     margin: 0;
+    color: white;
+    padding: 15px;
+    font-size: 20px;   
 }
 
 #logo{
-    background-color: rgb(255, 255, 255);
-    height:130px;
+
+    height:60px;
     display: flex;          /* Tags para posicionar no centro da div*/
     display: -webkit-flex; /* Garante compatibilidade com navegador Safari. */
     justify-content: center;  align-items: center;
 }
-
 #logo img{
-    width: 65px;
-    height: 85px
+    width: 35px;
+    height: 40px
 }
 
 p{ 
     margin: 1em 0;
     font-weight: 600;
+}
+/*Talvez seja interessaante diminuir mais esse tamanho*/
+h15{
+    position: relative;
+    padding-left: 10px;
 }
 
 .passo{
@@ -37,43 +38,93 @@ p{
     text-align: center; 
     position: relative;
     clear:both;
-    border-bottom: 1px solid #000;
 }
 
 .passo .passo-body{
     padding-bottom: 20px;
 }
+
 .clear{
     clear:both;
 }
 
+.main{
+    border: medium solid black;
+}
+/*Blocos precisam ser excludentes após apertado o botão. Ainda não implementado*/
+#blocoGeral1, #blocoGeral2{
+    height: 600px;
+    background-color: rgb(219, 216, 216);
+    position: relative;
+    text-align: center; 
+    clear:both;
+}
+#bloco1, #bloco3{
+    height: 250px;
+    background-color: rgb(219, 216, 216);
+    position: relative;
+}
+
+#bloco2{
+    height: 25px;
+    background-color: rgb(219, 216, 216);
+    position: relative;
+}
+/*Botões das divs principais (Blocos)*/
+#inserirVideo{
+    width: 150px;  height: 20px;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer; font-size: 12px;
+    display: inline-block;
+    position: relative;
+    padding: 1px;   font-weight: bold;   
+}
+#gerarVideo{
+    margin-top: 130px;
+    background-color: rgb(255, 130, 0);
+    color: white;
+    border-radius: 8px;
+    width: 140px;
+}
+/*Imagens dos cards de vídeo*/
+#imgCard1, #imgCard2, #imgCard3, #imgCard4{
+    background-color: rgb(255, 255, 255);
+    width: 180px;
+    height: 105px;
+}
+#card1, #card2, #card3, #card4{
+    width: 180px; height: 220px;
+    background-color: #DDDDDD;
+    position: relative; margin-left: 35px;
+}
+#btn1, #btn2, #btn3, #btn4{
+    margin-top: 0px; position: relative;
+
+}
 .video{
     position: relative;
     background-color: #DDDDDD;
     padding-bottom: 10px;
 }
-
 .exibir{
         width: 80px; height: 30px;
         border-radius: 6px; border: none;
         background: #6A8AE5; color: white;
         cursor: pointer;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-size: 12px; padding: 1px;
+        font-size: 12px;
 }  
-
 .exibir:hover{
     background-color: rgb(16, 117, 163);
 }
-
 .adicionar{
-    border-radius: 6px;
-    background: #4DAA4D;
-    color: #fff;
+    width: 80px; height: 30px;
+    border-radius: 6px; border: none;
+    background: #4DAA4D;  color: #fff;
     cursor: pointer;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 12px;
-    padding: 8px;
 }    
 
 .adicionar:hover{
@@ -82,25 +133,14 @@ p{
 
 .btn{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 14px;
-    border: none; 
-    border-radius: 10px;
+    font-size: 15px;
     cursor: pointer; 
-    background: rgba(206, 120, 36, 0.8); 
-    color: #fff;
-    text-transform: uppercase; 
-    font-weight: 600;   
-    text-decoration: none;
+    font-weight: bold;   
     padding: 10px; 
-    position: relative;
     display: inline-block;
     margin: 10px; 
     position: relative;
     transition: all .5s;
-}
-
-.btn:hover{
-    background: rgba(206, 120, 36); 
 }
 
 #previa{
@@ -124,7 +164,6 @@ p{
     height: 80px;
     line-height: 20px; 
 }
-
 
 #baixar{
     background: #5FDD5F;
@@ -217,6 +256,7 @@ label.grid_4 {
     -o-transform: scaleY(-1);
     -webkit-transform: scaleY(-1);
     transform: scaleY(-1);
+    cursor: pointer;
 }
 
 a.seta.collapsed {
