@@ -8,241 +8,231 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    
+     
     <!--bibliotecas js-->
+    <!--
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl" crossorigin="anonymous"></script>
-    
+    -->
+
     <!-- frontend -->
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="javascripts/script.js"></script>
     
     <!--gravacao-->
+    <!--
     <script src="javascripts/record.js"></script>
     <script src="javascripts/formato-basica.js"></script>
     <script src="javascripts/canvas-record.js"></script>
     <script src="javascripts/audio-record.js"></script>
+    -->
   </head>
   
   <body>
-    <div class="container_24" id="standard">
+    <div class="container_16" id="standard">
       <header>
-        <div class="grid_24" id="logo"><a href="/"><img src="images/tce.png"></a>
+        <div class="grid_16" id="logo"><a href="/"><img src="images/tce.png"></a>
           <h2> Sistema de Personalização de Vídeos</h2>
         </div>
         <div class="clear"></div>
       </header>
       <div class="passo container_16" id="passo1">
         <div class="grid_16">
-          <p>Escolha um modelo de vídeo</p><a class="seta" data-toggle="collapse" data-target="#passo1-body" aria-expanded="false" aria-controls="passo1-body"></a>
+          <p class="titulo">Escolha um modelo de vídeo</p>
         </div>
-        <div class="passo-body collapse show grid_16" id="passo1-body">
-          <div class="btn main" name="acervo" data-toggle="collapse" data-target="#passo2-body" aria-expanded="false" aria-controls="passo2-body">Crie seu Vídeo</div>
-          <div class="btn main" onclick="setFormato('playlist');" data-toggle="collapse" data-target="#passo3-body" aria-expanded="false" aria-controls="passo3-body">Vídeos Salvos</div>
-         <!-- <div class="btn" onclick="setFormato('titulo-imagem');" data-toggle="collapse" data-target="#passo3-body" aria-expanded="false" aria-controls="passo3-body">Playlist com título e imagem</div>
-         -->
+        <div id="botoesPrincipais">
+          <div class="btn main" >Crie seu Vídeo</div>
+          <div class="btn main" >Vídeos Salvos</div>
+         
         </div>
         <div class="clear"></div>
       </div>
+
+      <!--Bloco para o click no primeiro botão-->
       <div id="blocoGeral1" class="bloco container_16">
         <p>Escolha vídeos e monte o seu personalizado</p>
-        <div id="bloco1"></div>
-        <div id="bloco2"><p>Inserir um vídeo seu
-          <a class="inserirVideo" id="inserirVideo">Escolher vídeo</a></p></div>
-        <div id="bloco3">
+        <div id="bloco1" class="grid_16">
+          <div id="cardsGeral1" class="grid_16">
+            <div id="card1" class="grid_4">
+                <div id="imgCard1">
+                    <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                </div>
+                <b>Título do Vídeo</b><br>
+                <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                <div id="btn1">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+            </div>
+             
+            <div id="card2" class="grid_4">
+                    <div id="imgCard2">
+                        <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                    </div>
+                <b>Título do Vídeo</b><br>
+                <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                <div id="btn2">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+             </div>
+        
+            <div id="card3" class="grid_4">
+                <div id="imgCard3">
+                    <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                </div>
+                <b>Título do Vídeo</b><br>
+                <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                <div id="btn3">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+             </div>
+        
+            <div id="card4" class="grid_4">
+                <div id="imgCard4">
+                    <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                </div>
+                <b>Título do Vídeo</b><br>
+                <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                <div id="btn4">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+            </div>
+           </div>
+        </div>
+      
+       <p>Inserir um vídeo seu<a class="inserirVideo" id="inserirVideo">Escolher vídeo</a></p>
+
+        <div id="bloco2" class="grid_16">
           <p>Montagem do Vídeo</p>
-          <a class="btn gerarVideo" id="gerarVideo">Gerar Vídeo</a></div></div>
+          <a class="btn gerarVideo" id="gerarVideo">Gerar Vídeo</a></div>
+        </div><br><br>
+ 
+      <!--Bloco para o click no segundo botão-->    
       <div id="blocoGeral2" class="bloco container_16">
               <p> Escolha vídeos sem personalização</p>  
           <div id="bloco2_1" class="grid_16">
-              <div id="cards2" class="grid_16">
-                  <div id="card1" class="grid_4">
-                      <div id="imgCard1">
-                          <a href="#"><img src="img/video1.jpg" width="180px" height="105px"></a>
+              <div id="cardsGeral2" class="grid_16">
+                  <div id="card5" class="grid_4">
+                      <div id="imgCard5">
+                          <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
                       </div>
                       <b>Título do Vídeo</b><br>
-                      <h15>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</h15>
-                      <div id="btn1">
+                      <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                      <div id="btn5">
                           <input type="submit" class="exibir" name="Exibir" value="Exibir">
-                          <input type="button" class="adicionar" name="Baixar" value="Baixar"></div>
+                          <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
                   </div>
                    
-                  <div id="card2" class="grid_4">
-                          <div id="imgCard2">
-                              <a href="#"><img src="img/video1.jpg" width="180px" height="105px"></a>
+                  <div id="card6" class="grid_4">
+                          <div id="imgCard6">
+                              <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
                           </div>
                       <b>Título do Vídeo</b><br>
-                      <h15>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</h15>
-                      <div id="btn2">
+                      <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                      <div id="btn6">
                           <input type="submit" class="exibir" name="Exibir" value="Exibir">
-                          <input type="button" class="adicionar" name="Baixar" value="Baixar"></div>
+                          <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
                    </div>
               
-                  <div id="card3" class="grid_4">
-                      <div id="imgCard3">
-                          <a href="#"><img src="img/video1.jpg" width="180px" height="105px"></a>
+                  <div id="card7" class="grid_4">
+                      <div id="imgCard7">
+                          <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
                       </div>
                       <b>Título do Vídeo</b><br>
-                      <h15>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</h15>
-                      <div id="btn3">
+                      <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                      <div id="btn7">
                           <input type="submit" class="exibir" name="Exibir" value="Exibir">
-                          <input type="button" class="adicionar" name="Baixar" value="Baixar"></div>
+                          <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
                    </div>
               
-                  <div id="card4" class="grid_4">
-                      <div id="imgCard4">
-                          <a href="#"><img src="img/video1.jpg" width="180px" height="105px"></a>
+                  <div id="card8" class="grid_4">
+                      <div id="imgCard8">
+                          <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
                       </div>
                       <b>Título do Vídeo</b><br>
-                      <h15>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</h15>
-                      <div id="btn4">
+                      <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                      <div id="btn8">
                           <input type="submit" class="exibir" name="Exibir" value="Exibir">
-                          <input type="button" class="adicionar" name="Baixar" value="Baixar"></div>
+                          <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
                   </div>
                </div>
              
           </div>
           <div id="bloco2_2" class="grid_16"><br>
-          <p>Escolha vídeos personalizados</p></div>
+          <p class="titulo">Escolha vídeos personalizados</p>
+          <div id="bloco2_1" class="grid_16">
+            <div id="cardsGeral2" class="grid_16">
+                <div id="card9" class="grid_4">
+                    <div id="imgCard9">
+                        <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                    </div>
+                    <b>Título do Vídeo</b><br>
+                    <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                    <div id="btn9">
+                        <input type="submit" class="exibir" name="Exibir" value="Exibir">
+                        <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
+                </div>
+                 
+                <div id="card10" class="grid_4">
+                        <div id="imgCard10">
+                            <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                        </div>
+                    <b>Título do Vídeo</b><br>
+                    <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                    <div id="btn10">
+                        <input type="submit" class="exibir" name="Exibir" value="Exibir">
+                        <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
+                 </div>
+            
+                <div id="card11" class="grid_4">
+                    <div id="imgCard11">
+                        <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                    </div>
+                    <b>Título do Vídeo</b><br>
+                    <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                    <div id="btn11">
+                        <input type="submit" class="exibir" name="Exibir" value="Exibir">
+                        <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
+                 </div>
+            
+                <div id="card12" class="grid_4">
+                    <div id="imgCard12">
+                        <a href="#"><img src="images/video1.jpg" width="180px" height="70px"></a>
+                    </div>
+                    <b>Título do Vídeo</b><br>
+                    <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
+                    <div id="btn12">
+                        <input type="submit" class="exibir" name="Exibir" value="Exibir">
+                        <input type="button" class="baixar" name="Baixar" value="Baixar"></div>
+                </div>
+             </div>
+        </div>
       </div>  
-
-      <div class="passo container_16" id="passo2">
-        <div class="grid_16">
-          <p>Passo 2: Acervo de vídeos personalizados</p><a class="seta collapsed" data-toggle="collapse" data-target="#passo2-body" aria-expanded="false" aria-controls="passo2-body"></a>
-        </div>
-        <div class="passo-body collapse grid_16" id="passo2-body">
-          <div class="container_16">
-            <div class="video grid_4"><a href="#"><img src="videos/ferramentas_de_controle.png" width="100%" height="105px"></a><b>Título</b>
-              <h5>Descrição</h5>
-              <div>
-                <input class="adicionar" type="submit" name="Selecionar" value="Selecionar" onclick="previaSalvos('ferramentas_de_controle.mp4')">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="passo container_16" id="passo3">
-        <div class="grid_16">
-          <p>Passo 3: Adicione vídeos à sua playlist</p><a class="seta collapsed" data-toggle="collapse" data-target="#passo3-body" aria-expanded="false" aria-controls="passo3-body"></a>
-        </div>
-        <div class="passo-body collapse grid_16" id="passo3-body">
-          <div class="container_16"><a href="javascript: abrir('upload');"><img src="images/envie.jpg" width="185px" height="90px"></a>
-            <p>Envie um vídeo</p>
-          </div>
-          <div class="container_16">
-            <p>Vídeos institucionais</p>
-            <div class="video grid_4"><a href="#"><img src="videos/ferramentas_de_controle.png" width="100%" height="105px"></a><b>Título</b>
-              <div><span class="adicionar" data-id="id" data-arquivo="ferramentas_de_controle.mp4" onclick="popupAcervo(this.dataset);">Adicionar</span></div>
-            </div>
-          </div>
-          <div class="container_16" id="timeline">    </div>
-          <div class="container_16">
-            <div class="btn btn-info" id="gerar">Gerar vídeo  </div>
-          </div>
-        </div>
-      </div>
-      <div class="popup container_16" id="popup-edit">
-        <div class="grid_10"><img class="sair" id="sair" src="images/sair.png" width="25px" height="25px" onclick="fechar('edit');">
-          <p>Editar vídeo da playlist</p>
-          <div class="container_10"> 
-            <p class="status grid_4" id="status-popup-edit">Vídeo carregando, aguarde...</p>
-            <video class="previa" id="previa-popup-edit" controls data-status="status-popup-edit"></video>
-          </div>
-          <div class="grid_5" id="minutagem">
-            <div class="container_5">
-              <label>Tempo inicial</label>
-              <input id="inicio-popup-edit" type="time" name="inicio">
-            </div>
-            <div class="container_5">
-              <label>Tempo final</label>
-              <input id="final-popup-edit" type="time" name="final">
-            </div>
-            <input id="video-id-popup-edit" type="hidden">
-          </div>
-          <div class="container_10">
-            <input class="adicionarPopup" type="submit" value="Adicionar" onclick="save()">
-          </div>
-        </div>
-      </div>
-      <div class="popup container_16" id="popup-upload">
-        <div class="grid_10"><img class="sair" id="sair" src="images/sair.png" width="25px" height="25px" onclick="fechar('upload');">
-          <p>Inserir Vídeo Local</p>
-          <div class="container_10">
-            <input id="upload" type="file" value="Escolher arquivo de vídeo no seu computador" onchange="setPreviaUpload">
-          </div>
-          <div class="container_10"> 
-            <p class="status grid_4" id="status-popup-upload">Vídeo carregando, aguarde...</p>
-            <video class="previa" id="previa-popup-upload" controls data-status="status-popup-upload"></video>
-          </div>
-          <div class="grid_5" id="minutagem">
-            <div class="container_5">
-              <label>Tempo inicial</label>
-              <input id="inicio-popup-upload" type="time" name="inicio">
-            </div>
-            <div class="container_5">
-              <label>Tempo final</label>
-              <input id="final-popup-upload" type="time" name="final">
-            </div>
-          </div>
-          <div class="container_10">
-            <input class="adicionarPopup" type="submit" value="Adicionar" onclick="add('upload')">
-          </div>
-        </div>
-      </div>
-      <div class="popup container_16" id="popup-acervo">
-        <div class="grid_10"><img class="sair" id="sair" src="images/sair.png" width="25px" height="25px" onclick="fechar('acervo');">
-          <p>Adicionar vídeo institucional</p>
-          <div class="container_10"> 
-            <p class="status grid_4" id="status-popup-acervo">Vídeo carregando, aguarde... 
-              <progress id="progress-acervo"></progress>
-            </p>
-            <video class="previa" id="previa-popup-acervo" controls data-status="status-popup-acervo"></video>
-          </div>
-          <div class="grid_5" id="minutagem">
-            <div class="container_5">
-              <label>Tempo inicial</label>
-              <input id="inicio-popup-acervo" type="time" name="inicio">
-            </div>
-            <div class="container_5">
-              <label>Tempo final</label>
-              <input id="final-popup-acervo" type="time" name="final">
-            </div>
-          </div>
-          <div class="container_10">
-            <input class="adicionarPopup" type="submit" value="Adicionar" onclick="add('acervo')">
-          </div>
-        </div>
-      </div>
+</div>
     
     <!--Pop-up 2 não implementado. Classe e id ainda não definida-->
-    <div class="popup2 container_16" id="popup-acervo2">
-        <div class="grid_10"><img class="sair" id="sair" src="images/sair.png" width="25px" height="25px" onclick="fechar('acervo');">
-          <div class="container_10"> 
-            <p class="status2 grid_10">Vídeo carregado/carregando</p></div>
-              <div class="container_10">
-                  <p>Prévia do Vídeo Final</p>
-                  <div class="container_16">
-                    <video id="previa" controls></video>
-                  </div>
-                  <div class="grid_16">
-                    <form id="form" name="Formulario" action="">
-                      <p class="titulo">
-                        <input type="text" placeholder="Insira um título para seu vídeo personalizado" required="required">
-                      </p>
-                      <p class="descricao">
-                        <textarea type="text" placeholder="Insira uma breve descrição para seu vídeo personalizado" required="required"></textarea>
-                      </p>
-                      <div class="grid_16">
-                        <input class="btn salvar" type="submit" name="Salvar" value="Salvar">
-                      </div>
-                    </form><a class="btn" id="baixar">Baixar</a>
-                    <input class="btn finalizar" type="reset" name="FinalizarEdicao" value="Finalizar Edição">
-                  </div>
+            <br><br>
+            <div id="popup" class="grid_16">
+              <div id="carregamento" class="container_16">
+                <p>Vídeo Carregado/Carregando</p>
+              </div>
+              <div id="previa" class="container_16">
+                <p>Prévia do Vídeo Final</p>
+                <div>
+                  <video id="previa" controls></video>
                 </div>
-          </div>
-        </div>
-       </div>
-     </div>
+              </div>
+              <div class="container_16">
+                <form id="form" name="Formulario" action="">
+                  <p class="titulo">
+                    <input type="text" placeholder="Insira um título para seu vídeo personalizado" required="required">
+                  </p>
+                  <p class="descricao">
+                    <textarea type="text" placeholder="Insira uma breve descrição para seu vídeo personalizado" required="required"></textarea>
+                  </p>
+                  <div class="container_16">
+                    <input class="btn salvar" type="submit" name="Salvar" value="Salvar">
+                    <a class="btn" id="baixar">Baixar</a>
+                    <input class="btn finalizar" type="reset" name="FinalizarEdicao" value="Finalizar Edição"></div>
+              </form></div>
+            </div>
+      </div>
+    
   </body>
 </html>
