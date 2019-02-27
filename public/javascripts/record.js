@@ -3,8 +3,6 @@
 var canvas;
 window.onload = async function(){
 
-    canvas = byId("canvas");
-
     byId("gerar").addEventListener("click", async function(){
            
         if(!byId("timeline").children.length){
@@ -16,41 +14,28 @@ window.onload = async function(){
             alert("Selecione o formato desejado no passo 1"); 
             return false;
         }
-
-        var dados;
-        switch(formato){
-            case "playlist": dados = await getTrackList(); break;
-        }
         
-        start(dados);
-    });
-}
-   
-function start(dados) {
-
-    iniciar();
-
-    var progress = setProgress(dados.total);
+        // var progress = setProgress();
     
-    recording(dados)
-        .then( unmerged => merge(unmerged, dados.total) )
-        .then( async merged => {
-
-            if(merged.unmerged){
-                merged = await merge(merged.unmerged, dados.total);
+        record()
+            .then( unmerged => merge(unmerged, total) )
+            .then( async merged => {
 
                 if(merged.unmerged){
-                    alert("Ocorreu um erro durante a renderização. Atualize a página e tente novamente.");
+                    merged = await merge(merged.unmerged);
 
-                    return false;
+                    if(merged.unmerged){
+                        alert("Ocorreu um erro durante a renderização. Atualize a página e tente novamente.");
+
+                        return false;
+                    }
                 }
-            }
 
-            clearInterval(progress);
-            var src = getChunksUrl(merged);
-            finalizar(src);
-    });
-    
+                // clearInterval(progress);
+                var src = getChunksUrl(merged);
+                finish(src);
+        }   );
+        });
 }
 
 function addPlayer(chunks, type, parent, controls){
@@ -68,14 +53,11 @@ function getChunksUrl(chunks){
     return URL.createObjectURL(blob);
 }
 
-var players;
-function recording(dados){
+function record(){
     return new Promise(async function(resolve){
         
-        players = dados.players;
-
-        var recordedVideo = await recordingVideo(dados);
-        var recordedAudio = await recordingAudio(players, dados.total);
+        var recordedVideo = await recordingVideo();
+        var recordedAudio = await recordingAudio();
 
         resolve({
             video: recordedVideo,

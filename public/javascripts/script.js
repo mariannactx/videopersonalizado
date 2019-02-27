@@ -27,18 +27,25 @@ function fechar(popup){
     
 }
 
-var acervo = [];
-function popupAcervo(video){
+function setPreviaSalvos(video){
+    finalizar("/videos/" + video);
+}
 
-    if(acervo[video.id]){
-        setPrevia('acervo', acervo[video.id].src);
+var previas = {acervo: [], upload: []}
+function setPreviaAcervo(video){
+
+    //se vídeo já foi visualizado, exibe no popup
+    if(previas.acervo[video.id]){
+        setPrevia('acervo', previas.acervo[video.id].src);
         return true;
     }
     
-    var path = "/videos/" + video.arquivo;
+    // exibe status carregamento do vídeo do acervo
     byId("status-popup-acervo").style.display = "block";   
     var progressBar = byId("progress-acervo");
     
+    var path = "/videos/" + video.arquivo;
+
     //carregar blob de vídeo para permitir tocar sem travar
     var req = new XMLHttpRequest();
     req.open('GET', path, true);
@@ -52,12 +59,13 @@ function popupAcervo(video){
             var blob = this.response;
             var src = URL.createObjectURL(blob);
 
-            acervo[video.id] = {
+            previas.acervo[video.id] = {
                 path: path,
                 blob: blob,
                 src: src
             };
             
+            byId("previa-popup-acervo").dataset.id = video.id;
             setPrevia('acervo', src);
             
             return true;
@@ -91,6 +99,11 @@ function popupAcervo(video){
 }
 
 function setPreviaUpload(event){
+    byId("previa-popup-upload").dataset.id = previas.upload.length;
+    previas.upload.push({
+        blob: event.target.files[0]
+    });
+    
     var tmppath = URL.createObjectURL(event.target.files[0]);
     setPrevia('upload', tmppath);
 }
@@ -105,7 +118,8 @@ function playPrevia(e){
     e.target.play();   
 }
 
-//Passo a passo
+//Ações da timeline: add, remove, edit, save, finish
+var timeline = [];
 function add(popup){
 
     var src    = byId("previa-popup-" + popup).src;
@@ -114,14 +128,28 @@ function add(popup){
     
     var video = document.createElement("div");
 
-    var date = new Date(); 
-    var timestamp = date.getTime();
-    video.id = timestamp;
-
+    video.id = timeline.length;
     video.dataset.src = src;
     video.dataset.inicio = inicio;
     video.dataset.final =final;
-        
+    
+    var inicio   = toSeconds(video.dataset.inicio);
+    var final    = toSeconds(video.dataset.final)
+    var duracao = final - inicio;
+
+    if(isNaN(duracao) || duracao < 0)
+        duracao = null;
+
+    var previaId = byId("previa-popup-" + popup).dataset.id;
+    
+    timeline[video.id] = {
+        "src"      : video.dataset.src,
+        "offset"   : video.dataset.inicio,
+        "duration" : duracao,
+        "path"     : previas[popup][previaId].path,
+        "blob"     : previas[popup][previaId].blob
+    }
+
     var editIcon = document.createElement("i");
     editIcon.setAttribute("class", "fas fa-edit");
     editIcon.addEventListener("click", edit);
@@ -139,6 +167,7 @@ function add(popup){
 
 function remove(e){
     var parent = e.target.parentNode;
+    timeline.splice(e.target.id, 1);
     parent.remove(e.target);
 }
 
@@ -164,17 +193,7 @@ function save(){
     fechar("edit");
 }
 
-function acervo(video){
-    iniciar();
-    finalizar("/videos/" + video);
-}
-
-function iniciar(){
-    $('.collapse').collapse('hide')
-    $('#passo4-body').collapse('show')
-}
-
-function finalizar(video){
+function finish(video){
     
     byId("previa").src = video;
     byId("baixar").href = video;
@@ -186,6 +205,21 @@ function finalizar(video){
 
 function byId(id){
     return document.getElementById(id);
+}
+
+function toSeconds(string) { 
+    if (!string) 
+        return null;
+
+    var p = string.split(':'),
+    s = 0, m = 1;
+
+    while (p.length > 0) {
+        s += m * parseInt(p.pop(), 10);
+        m *= 60;
+    }
+
+    return s;
 }
 
 var formato = false;
