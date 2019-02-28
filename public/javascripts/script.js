@@ -1,4 +1,7 @@
+var canvas;
 window.addEventListener("load", function(){
+    canvas = byId("canvas");
+    
     byId("upload").addEventListener("change", setPreviaUpload);
 
     var popups = ['upload', 'edit'];
@@ -119,7 +122,7 @@ function playPrevia(e){
 }
 
 //Ações da timeline: add, remove, edit, save, finish
-var timeline = [];
+var timeline = { "videos": [], "total": 0};
 function add(popup){
 
     var src    = byId("previa-popup-" + popup).src;
@@ -128,28 +131,28 @@ function add(popup){
     
     var video = document.createElement("div");
 
-    video.id = timeline.length;
-    video.dataset.src = src;
+    video.id = timeline.videos.length;
+    video.dataset.src    = src;
     video.dataset.inicio = inicio;
-    video.dataset.final =final;
+    video.dataset.final  = final;
     
-    var inicio   = toSeconds(video.dataset.inicio);
-    var final    = toSeconds(video.dataset.final)
-    var duracao = final - inicio;
+    var inicioInS = toSeconds(inicio);
+    var finalInS  = toSeconds(final)
+    var duracao = finalInS - inicioInS;
 
     if(isNaN(duracao) || duracao < 0)
         duracao = null;
 
     var previaId = byId("previa-popup-" + popup).dataset.id;
     
-    timeline[video.id] = {
-        "src"      : video.dataset.src,
-        "offset"   : video.dataset.inicio,
+    setTimelineVideo(video.id, {
+        "src"      : src + "#t=" + inicio + "," + final,
+        "offset"   : inicioInS,
         "duration" : duracao,
         "path"     : previas[popup][previaId].path,
         "blob"     : previas[popup][previaId].blob
-    }
-
+    });
+    
     var editIcon = document.createElement("i");
     editIcon.setAttribute("class", "fas fa-edit");
     editIcon.addEventListener("click", edit);
@@ -163,6 +166,15 @@ function add(popup){
     fechar(popup);    
 
     byId("timeline").appendChild(video);
+}
+
+// confs: src, offset, duration, path, blob
+function setTimelineVideo(id, confs){
+    timeline.videos[id] = {}
+
+    for(var c in confs){
+        timeline.videos[id][c] = confs[c]
+    }
 }
 
 function remove(e){
@@ -179,6 +191,7 @@ function edit(e){
     byId("inicio-popup-edit").value   = video.dataset.inicio;
     byId("final-popup-edit").value    = video.dataset.final;
     
+    //to do: edit
     setPrevia('edit', video.dataset.src);
 
     abrir('edit');

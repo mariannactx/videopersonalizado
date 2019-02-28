@@ -193,6 +193,7 @@ label.grid_4 {
 
 .previa{
     max-width: 80%;
+    min-width: 260px;
     height: 300px;
 }
 .sair, .seta{
@@ -252,7 +253,6 @@ a.seta.collapsed {
     width: 100px;
 }
 
-
 /* record */
 .progress{
     border: 1px solid;
@@ -264,7 +264,7 @@ a.seta.collapsed {
 
 #canvas, #merge{
     position: absolute;
-    left: -3840px;
+    left: -3840px;    
 }
 
 .container {

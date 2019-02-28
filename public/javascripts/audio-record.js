@@ -1,22 +1,23 @@
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 
-function recordingAudio(players, total){
+function recordAudios(){
     return new Promise(async function (resolve){
         //criar um contexto de áudio para mesclar todos os áudios
-        // var offline = new OfflineAudioContext(2,44100*40,44100);
-        var offline = new OfflineAudioContext(2,44100 * total, 44100);
+        //exemplo: OfflineAudioContext(2,44100*40,44100);
+        var offline = new OfflineAudioContext(2,44100 * timeline.total, 44100);
         
         var when = 0;
-        for(var p in players){  
+        var videos = timeline.videos;
+        for(var v in videos){  
 
             // gera um buffer para cada áudio
-            var buffer = await getFile(players[p].audio.src)
-            .then(track => playTrack(track, offline, when, players[p].offset, players[p].duration))
+            var buffer = await getFile(videos[v].src)
+            .then(track => playTrack(track, offline, when, videos[v].offset, videos[v].duration))
             .catch( error => { console.log(error); });
             
             //insere a duração do vídeo para ter um delay no start do próximo vídeo
-            when += players[p].duration;
+            when += videos[v].duration;
         }; 
         
         offline.startRendering().then(function(renderedBuffer) {
@@ -35,7 +36,7 @@ function recordingAudio(players, total){
             };
             
             audioRecorder.onstop = function() {
-                console.log('Converting audio buffer to blob completed successfully', chunks);                
+                console.log('Converting audio buffer to blob completed successfully', chunks);
                 resolve(chunks);
             };
 
@@ -55,26 +56,10 @@ function recordingAudio(players, total){
 async function getFile(filepath) {
 
     return fetch(filepath)
-    .then(file => {
-        console.log(file);
-        var arrayBuffer = file.arrayBuffer()
-        .catch( error => { console.log(error) });
-        return arrayBuffer;
-    })
-    .then(arrayBuffer => {
-        console.log(arrayBuffer);
-
-        var audioBuffer = audioCtx.decodeAudioData(arrayBuffer)
-        .catch( error => { console.log(error) });
-
-        return audioBuffer;
-        
-    })
-    .then(audioBuffer => {
-        console.log(audioBuffer);
-        return audioBuffer;
-    })
+    .then(file => file.arrayBuffer())
+    .then(arrayBuffer => audioCtx.decodeAudioData(arrayBuffer))
     .catch( error => { console.log(error); });
+
 }
 
 // create a buffer, plop in data, connect and play -> modify graph here if required
