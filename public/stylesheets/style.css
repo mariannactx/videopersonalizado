@@ -1,8 +1,9 @@
 header{
     height: 30px;
-    border-bottom: 1px solid #000;
-    background-color: rgb(61, 61, 61);
+    border-bottom: 1px solid #353535;
+    background-color: #353535;
 }
+
 
 h2 {
     margin: 0;
@@ -56,18 +57,29 @@ small{
 .main{
     border: medium solid black;
 }
+
+a, a:hover{
+    color: inherit;
+}
+
+a:link{
+    text-decoration: none;
+}
 /*Blocos precisam ser excludentes após apertado o botão. Ainda não implementado*/
 #blocoGeral1, #blocoGeral2{
     height: 500px;
-    background-color: rgb(181, 194, 194);
+    background-color: #EAEAEA;
     position: relative;
     text-align: center; 
     clear:both;
 }
+#blocoGeral2{
+    display: none
+}
   
 #bloco1, #bloco2{
     height: 200px;
-    background-color: rgb(181, 194, 194);
+    background-color: #EAEAEA;
     position: relative;
 }
 
@@ -91,8 +103,11 @@ small{
 }
 #gerarVideo:hover{
     background-color: rgb(255, 161, 61);
-
 }
+#gerarVideo:active{
+    background-color: rgb(184, 95, 0);
+}
+
 /*Imagens dos cards de vídeo*/
 #imgCard1, #imgCard2, #imgCard3, #imgCard4, #imgCard5, #imgCard6, #imgCard7, #imgCard8, #imgCard9, #imgCard10, #imgCard11, #imgCard12{
     background-color: rgb(255, 255, 255);
@@ -126,6 +141,9 @@ small{
 .exibir:hover, .adicionar:hover{
     background-color: rgb(16, 117, 163);
 }
+.exibir:active, .adicionar:active{
+    background-color: #6A8AE5;
+}
 .baixar{
     width: 80px; height: 30px;
     border-radius: 6px; border: none;
@@ -138,6 +156,9 @@ small{
 
 .baixar:hover{
     background-color: rgb(105, 199, 110);
+}
+.baixar:active{
+    background-color: #4DAA4D;
 }
 
 .btn{
@@ -155,7 +176,7 @@ small{
 #carregamento{
     position: relative;
     text-align: center;
-    background: #cfcdcd;
+    background: #EAEAEA;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: auto;
@@ -171,13 +192,19 @@ small{
 }
 
 #form{
-    font-size: 14px;    
+    font-size: 14px;
+    position: relative;
+    margin-left: auto;
+    left: 50%;
+    transform: translate(-50%, 0%)
 }
 
 .titulo input, .descricao textarea{
-    width: 600px; 
+    width: 400px; 
     padding: 0 10px 10px 10px; 
     border: thin solid;
+    position: relative;
+    
 }
 
 .descricao textarea{
@@ -194,6 +221,9 @@ small{
 #baixar:hover{
     background-color: rgb(10, 145, 75);
 }
+#baixar:active{
+    background-color: green
+}
 
 .finalizar{
     background: #f1f1f1;
@@ -204,6 +234,9 @@ small{
 .finalizar:hover{
     background-color: rgb(170, 160, 160); 
     color: white;
+}
+.finalizar:active{
+    background-color: rgb(112, 112, 112);
 }
 
 .salvar{
@@ -216,17 +249,46 @@ small{
     background: #cfcdcd;
     color: rgb(78, 78, 78);
 }
-
+.salvar:active{
+    background-color: rgb(60, 60, 50);
+}
 /*Css dos Pop-Ups*/
-#popup{
-    position: relative;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 550px;
+.popup{
+    position: fixed;
+    top: 0;   bottom: 0;
+    left: 0;  right: 0;
+    margin: auto;
+    height: 550px; width: 700px;
     text-align: center;border-radius: 10px;
     border: solid 1px rgb(143, 143, 143);
+    display: none;
+    background-color: white;
+}
+#CardPopup2{
+    height: 350px; width: 500px;
+    border: solid 2px #DDDDDD;
+    background-color: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    margin-left: auto;
+}
+#CardPopup3{
+    height: 350px;  width: 500px;
+    background-color: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    margin-left: auto;
+}
+#imgPopup2, #imgPopup3{
+    width: 500px;  height: 250px; border:none 1px solid
+}
+#btnPopup2, #btnPopup3{
+    margin-top: 50px;
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translate(-50%, 0%);
 }
 
 

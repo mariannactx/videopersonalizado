@@ -31,19 +31,21 @@
   
   <body>
     <div class="container_16" id="standard">
-      <header>
+    
+        <header>
         <div class="grid_16" id="logo"><a href="/"><img src="images/tce.png"></a>
           <h2> Sistema de Personalização de Vídeos</h2>
         </div>
         <div class="clear"></div>
       </header>
+      
       <div class="passo container_16" id="passo1">
         <div class="grid_16">
           <p class="titulo">Escolha um modelo de vídeo</p>
         </div>
         <div id="botoesPrincipais">
-          <div class="btn main" >Crie seu Vídeo</div>
-          <div class="btn main" >Vídeos Salvos</div>
+          <a href="javascript:mudarTela1();"><p id="btn1" class="btn main" >Crie seu Vídeo</p></a>
+          <a href="javascript:mudarTela2();"><p id="btn2" class="btn main" >Vídeos Salvos</p></a>
          
         </div>
         <div class="clear"></div>
@@ -61,7 +63,8 @@
                 <b>Título do Vídeo</b><br>
                 <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
                 <div id="btn1">
-                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+                <a href="javascript: abrir2();">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></a></div>
             </div>
              
             <div id="card2" class="grid_4">
@@ -71,7 +74,8 @@
                 <b>Título do Vídeo</b><br>
                 <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
                 <div id="btn2">
-                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+                <a href="javascript: abrir2();">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></a></div>
              </div>
         
             <div id="card3" class="grid_4">
@@ -81,7 +85,8 @@
                 <b>Título do Vídeo</b><br>
                 <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
                 <div id="btn3">
-                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+                <a href="javascript: abrir2();">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></a></div>
              </div>
         
             <div id="card4" class="grid_4">
@@ -91,17 +96,18 @@
                 <b>Título do Vídeo</b><br>
                 <small>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</small>
                 <div id="btn4">
-                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></div>
+                  <a href="javascript: abrir2();">
+                    <input type="submit" class="adicionar" name="Adicionar" value="Adicionar"></a></div>
             </div>
            </div>
         </div>
       
-       <p>Inserir um vídeo seu<a class="inserirVideo" id="inserirVideo">Escolher vídeo</a></p>
+       <p>Inserir um vídeo seu &ensp;<a href="javascript: abrir3();" class="inserirVideo" id="inserirVideo">Escolher vídeo</a></p>
 
         <div id="bloco2" class="grid_16">
           <p>Montagem do Vídeo</p>
-          <a class="btn gerarVideo" id="gerarVideo">Gerar Vídeo</a></div>
-        </div><br><br>
+          <a href="javascript:abrir1()" class="btn gerarVideo" id="gerarVideo">Gerar Vídeo</a></div>
+        </div>
  
       <!--Bloco para o click no segundo botão-->    
       <div id="blocoGeral2" class="bloco container_16">
@@ -156,7 +162,6 @@
           </div>
           <div id="bloco2_2" class="grid_16"><br>
           <p class="titulo">Escolha vídeos personalizados</p>
-          <div id="bloco2_1" class="grid_16">
             <div id="cardsGeral2" class="grid_16">
                 <div id="card9" class="grid_4">
                     <div id="imgCard9">
@@ -203,12 +208,12 @@
                 </div>
              </div>
         </div>
+      </div>
       </div>  
-</div>
     
-    <!--Pop-up 2 não implementado. Classe e id ainda não definida-->
+    
             <br><br>
-            <div id="popup" class="grid_16">
+            <div id="popup1" class="popup grid_16">
               <div id="carregamento" class="container_16">
                 <p>Vídeo Carregado/Carregando</p>
               </div>
@@ -218,21 +223,51 @@
                   <video id="previa" controls></video>
                 </div>
               </div>
-              <div class="container_16">
-                <form id="form" name="Formulario" action="">
+              <div id="form" class="grid_16">
+                <form name="Formulario" action="">
                   <p class="titulo">
                     <input type="text" placeholder="Insira um título para seu vídeo personalizado" required="required">
                   </p>
                   <p class="descricao">
                     <textarea type="text" placeholder="Insira uma breve descrição para seu vídeo personalizado" required="required"></textarea>
                   </p>
-                  <div class="container_16">
+                  <div id="btnForm" class="grid_16">
                     <input class="btn salvar" type="submit" name="Salvar" value="Salvar">
                     <a class="btn" id="baixar">Baixar</a>
                     <input class="btn finalizar" type="reset" name="FinalizarEdicao" value="Finalizar Edição"></div>
               </form></div>
             </div>
-      </div>
-    
+
+            <div id="popup2" class="popup grid_16">
+                    <a href="javascript: fechar2();"><img id="sair" class="sair" src="images/sair.png" width="25px" height="25px"></a>
+                    <p>Editar Vídeo</p>
+                    <div id="CardPopup2" class="grid_10">
+                        <div id="imgPopup2">
+                            <a href="#"><img src="images/videoPopup.jpg" width="498px" height="250px"></a>
+                        </div>    
+                        <h5>Título do Vídeo</h5>
+                        <h6>Aqui eu escrevo qualquer coisa so pra testar a div. Parece estar tudo correto!!</h6>
+                        <div id="btnPopup2">
+                                <input type="submit" class="exibir" name="Exibir" value="Exibir">
+                                <input type="submit" class="baixar" name="Adicionar" value="Adicionar">
+                        </div>
+                    </div>                
+                </div>
+
+                <div id="popup3" class="popup grid_16">
+                        <a href="javascript: fechar3();"><img id="sair" class="sair" src="images/sair.png" width="25px" height="25px"></a>
+                            <p>Inserir Vídeo Local</p>
+                                <div id="CardPopup3" class="grid_16">
+                                    <div id="imgPopup3">
+                                        <a href="#"><img src="images/videoPopup.jpg" width="500px" height="250px"></a>
+                                    </div>
+                                    <div id="btnPopup3">
+                                <input type="submit" class="baixar" name="Adicionar" value="Adicionar">
+                            </div>
+                        </div>                
+                    </div>
+            
+    </div>
+        
   </body>
 </html>

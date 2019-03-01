@@ -1,3 +1,6 @@
+var blocoGeral1;
+var blocoGeral2;
+
 window.addEventListener("load", function(){
     byId("upload").addEventListener("change", setPreviaUpload);
 
@@ -8,23 +11,54 @@ window.addEventListener("load", function(){
     
 })
 
+
+
 //Pop-ups
-function abrir(popup){
-    byId("popup-" + popup).style.display = 'block';
+var popup1; var popup2;
+var popup3; var popup4;
+
+function abrir1() {
+    //document.getElementById("id da div geral negra").algo = 'block'
+    document.getElementById("popup1").style.display = 'block';
+}       
+       
+function abrir2() {
+    document.getElementById("popup2").style.display = 'block';
+}
+function fechar2() {
+    document.getElementById("popup2").style.display = 'none';
+}         
+       
+function abrir3() {
+    document.getElementById("popup3").style.display = 'block';
+}   
+function fechar3() {
+    document.getElementById("popup3").style.display = 'none';
+}  
+      
+function abrir4() {
+    document.getElementById("popup4").style.display = 'block';
+}       
+
+/* Troca de cores e de blocos pelos botoes principais*/
+window.onload = function(){
+    document.getElementById("blocoGeral1").style.display = 'block';
+    document.getElementById("btn1").style.background = "black";
 }
 
-function fechar(popup){
-    byId("popup-" + popup).style.display = 'none';
+function mudarTela1(){
+    document.getElementById("blocoGeral1").style.display = 'block';
+    document.getElementById("blocoGeral2").style.display = 'none';
+    document.getElementById("btn1").style.background = "black";
+    document.getElementById("btn2").style.background = "none";
 
-    if(byId("previa-popup-" + popup))
-        byId("previa-popup-" + popup).src = "";
+}
+function mudarTela2(){
+    document.getElementById("blocoGeral1").style.display = 'none';
+    document.getElementById("blocoGeral2").style.display = 'block';
+    document.getElementById("btn2").style.background = "black";
+    document.getElementById("btn1").style.background = "none";
 
-    if(byId("inicio-popup-" + popup))
-        byId("inicio-popup-" + popup).value = "";
-
-    if(byId("final-popup-" + popup))
-        byId("final-popup-" + popup).value = "";
-    
 }
 
 var acervo = [];
