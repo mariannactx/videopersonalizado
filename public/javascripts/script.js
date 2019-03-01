@@ -103,11 +103,14 @@ function setPreviaAcervo(video){
 
 function setPreviaUpload(event){
     byId("previa-popup-upload").dataset.id = previas.upload.length;
-    previas.upload.push({
-        blob: event.target.files[0]
-    });
     
     var tmppath = URL.createObjectURL(event.target.files[0]);
+    
+    previas.upload.push({
+        blob: event.target.files[0],
+        path: tmppath
+    });
+    
     setPrevia('upload', tmppath);
 }
 
