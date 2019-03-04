@@ -2,71 +2,59 @@
 
 var canvas;
 var currentMs = 0;
-window.onload = async function(){
-
-    byId("gerar").addEventListener("click", async function(){
+async function render(){
            
-        if(!byId("timeline").children.length){
-            alert("Não há vídeos na sua timeline"); 
-            return false;
-        }
-          
-        if(!formato){
-            alert("Selecione o formato desejado no passo 1"); 
-            return false;
-        }
-        
-        //iniciar barra de progresso 
-        // var progressBar = byId("progress-bar");    
-        // var totalInMs = timeline.total * 3.9 * 1000;
-        // var progress = setInterval(function(){
-        //     currentMs += 500;
-        //     progressBar.style.width = (currentMs * 100 / totalInMs) + "%";
-        // }, 500);
-        
-        //layout antigo
-        $('.collapse').collapse('hide')
-        $('#passo4-body').collapse('show')
+    if(!byId("timeline").children.length){
+        alert("Não há vídeos na sua timeline"); 
+        return false;
+    }
     
-        recording()
-            .then( unmerged => merge(unmerged, timeline.total) )
-            .then( async merged => {
-                
-                console.log("primeira tentativa:", merged);
-
-                if(merged.unmerged){
-                    merged = await merge(merged.unmerged);
-                    console.log("segunda tentativa:", merged);
-                }
-
-                if(merged.unmerged){
-                    alert("Ocorreu um erro durante a renderização. Atualize a página e tente novamente.");
-
-                    return false;
-                }
-
-                // clearInterval(progress);
-                var src = getChunksUrl(merged);
-                finish(src);
-            });
-        });
-}
-
-function recording(){
-    return new Promise(async function(resolve){
+    abrirPopup("gerar")
         
-        var recordedVideo = await recordVideos();
-        var recordedAudio = await recordAudios();
+    // iniciar barra de progresso 
+    var progressBar = byId("progress-bar");    
+    var totalInMs = timeline.total * 3 * 1000;
+    var progress = setInterval(function(){
+        currentMs += 500;
+        progressBar.style.width = (currentMs * 100 / totalInMs) + "%";
+    }, 500);
+    
+    merge(null).then( async result => {  
+        console.log("primeira tentativa:", result);
 
-        resolve({
-            video: recordedVideo,
-            audio: recordedAudio
-        })   
-    })
-}
+        if(result.unmerged){
+            result = await merge(result.unmerged);
+            console.log("segunda tentativa:", result);
+        }
+
+        if(result.unmerged){
+            alert("Ocorreu um erro durante a renderização. Atualize a página e tente novamente.");
+
+            return false;
+        }
+
+        clearInterval(progress);
+        var src = getChunksUrl(result);
+        finish(src);
+    });
+};
+
 
 async function merge(unmerged){
     
+    //na primeira tentativa 'unmerged' é nula
+    if(!unmerged){
+        var recordedVideo = await recordVideos();
+        var recordedAudio = await recordAudios();
+
+        unmerged = {
+            video: recordedVideo,
+            audio: recordedAudio
+        }
+    }
+
+    byId("merge").innerHTML = "";
+
     var playerVideo = addPlayer(unmerged.video, "video", "merge", false);
     var playerAudio = addPlayer(unmerged.audio, "audio", "merge", false);
 
@@ -82,7 +70,6 @@ async function merge(unmerged){
     var audioTrack = audioStream.getAudioTracks()[0];
     stream.addTrack(audioTrack);
 
-    console.log("merge", unmerged);
     return new Promise(function (resolve) {
         record(stream, async function(){
             playerVideo.play();

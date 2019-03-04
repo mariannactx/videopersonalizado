@@ -4,19 +4,30 @@ window.addEventListener("load", function(){
     
     byId("upload").addEventListener("change", setPreviaUpload);
 
-    var popups = ['upload', 'edit'];
-    popups.forEach(function(popup){
-        byId("previa-popup-" + popup).addEventListener("canplaythrough", playPrevia);
-    })
+    // var popups = ['upload', 'edit'];
+    // popups.forEach(function(popup){
+    //     byId("previa-popup-" + popup).addEventListener("canplaythrough", playPrevia);
+    // })
     
 })
 
+// Abas
+function abrirAba(abaId){
+    
+    byId("aba-" + abaId).style.display = 'block';
+    byId("btn-aba-" + abaId).setAttribute("class", "btn main active");
+    
+    var fecharAbaId = abaId == 1 ? 2 : 1;
+    byId("aba-" + fecharAbaId).style.display = 'none';
+    byId("btn-aba-" + fecharAbaId).setAttribute("class", "btn main");
+}
+
 //Pop-ups
-function abrir(popup){
+function abrirPopup(popup){
     byId("popup-" + popup).style.display = 'block';
 }
 
-function fechar(popup){
+function fecharPopup(popup){
     byId("popup-" + popup).style.display = 'none';
 
     if(byId("previa-popup-" + popup))
@@ -27,7 +38,6 @@ function fechar(popup){
 
     if(byId("final-popup-" + popup))
         byId("final-popup-" + popup).value = "";
-    
 }
 
 function setPreviaSalvos(video){
@@ -36,10 +46,13 @@ function setPreviaSalvos(video){
 
 var previas = {acervo: [], upload: []}
 function setPreviaAcervo(video){
-
+    console.log(video, previas.acervo[video.id]);
+    
     //se vídeo já foi visualizado, exibe no popup
     if(previas.acervo[video.id]){
+        byId("previa-popup-acervo").dataset.id = video.id;
         setPrevia('acervo', previas.acervo[video.id].src);
+        abrirPopup('acervo');
         return true;
     }
     
@@ -98,7 +111,7 @@ function setPreviaAcervo(video){
 
     req.send();
 
-    abrir('acervo');
+    abrirPopup('acervo');
 }
 
 function setPreviaUpload(event){
@@ -112,11 +125,13 @@ function setPreviaUpload(event){
     });
     
     setPrevia('upload', tmppath);
+    abrirPopup('upload');
 }
 
 function setPrevia(popup, src){
     byId("previa-popup-" + popup).src = src;
-    byId("status-popup-" + popup).style.display = "block";   
+    if(byId("status-popup-" + popup))
+        byId("status-popup-" + popup).style.display = "block";   
 }
 
 function playPrevia(e){
@@ -166,7 +181,7 @@ function add(popup){
     removeIcon.addEventListener("click", remove);
     video.appendChild(removeIcon);
 
-    fechar(popup);    
+    fecharPopup(popup);    
 
     byId("timeline").appendChild(video);
 }
@@ -197,7 +212,7 @@ function edit(e){
     //to do: edit
     setPrevia('edit', video.dataset.src);
 
-    abrir('edit');
+    abrirPopup('edit');
 }
 
 function save(){
@@ -206,17 +221,14 @@ function save(){
     video.dataset.inicio = byId("inicio-popup-edit").value;
     video.dataset.final = byId("final-popup-edit").value;
 
-    fechar("edit");
+    fecharPopup("edit");
 }
 
 function finish(video){
     
     byId("previa").src = video;
     byId("baixar").href = video;
-    
-    if(formato == "acervo")
-        byId("form").style.display = "none";
-    
+
 }
 
 function byId(id){
@@ -236,9 +248,4 @@ function toSeconds(string) {
     }
 
     return s;
-}
-
-var formato = false;
-function setFormato(f){
-    formato = f;
 }

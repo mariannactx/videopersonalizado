@@ -1,23 +1,25 @@
 extends layout
 block content
     #standard.container_16
-        header
-            #logo.grid_4
+        header.container_16
+            div
                 a(href='/')
-                    img(src='images/tce.png')
-            #banner.grid_12
-                h2  Sistema de Personalização de Palestras
-            .clear
-        
-        include passo1
-        include passo2
-        include passo3
-        include passo4
-        
+                    img#logo(src='images/tce.png')
+                p  Sistema de Personalização de Vídeos   
+        #menu.container_16
+            p.titulo Escolha um modelo de vídeo
+            span#btn-aba-1.btn.main.active(onclick='abrirAba(1);') Crie seu Vídeo
+            span#btn-aba-2.btn.main(onclick='abrirAba(2);') Vídeos Salvos
+                 
+        include bloco1
+        include bloco2
+
+        //renderizar
         canvas#canvas(width='3840', height='2160')
         #merge
-            
+    
         include popup-editar_video
+        include popup-gerar_video
         include popup-inserir_local
         include popup-acervo
         

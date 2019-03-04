@@ -1,0 +1,24 @@
+#aba-1.aba.container_16
+    p.titulo Escolha vídeos e monte o seu personalizado
+    .etapa.scroll.grid_15
+        if acervo.length
+            each video in acervo
+                .video.grid_4
+                    div.img(style="background-image:url('/videos/"+video.thumb+"');")
+                    b=video.titulo
+                    p=video.descricao
+                    div
+                        span.btn.adicionar(
+                            data-id=video.id,
+                            data-arquivo=video.arquivo,
+                            onclick="setPreviaAcervo(this.dataset);") Adicionar
+    .clear
+    .etapa.container_15
+        | Inserir um vídeo seu  
+        input#upload.btn(type='file', name="upload", onchange='setPreviaUpload')
+    .clear
+    .etapa.container_15
+        p.titulo Montagem do Vídeo
+        #timeline.grid_15 
+        .clear    
+        a#gerar.btn(onclick="render()") Gerar Vídeo

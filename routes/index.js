@@ -11,9 +11,9 @@ router.get('/', function(req, res, next) {
         });
     });
     
-    var getVideosPersonalizados = new Promise(function(resolve, reject){
-        var videosPersonalizados = require("../models/videosPersonalizados");
-        videosPersonalizados.find().then(function(result){
+    var getPersonalizados = new Promise(function(resolve, reject){
+        var personalizados = require("../models/personalizados");
+        personalizados.find().then(function(result){
             resolve(result);
         });
     });
@@ -23,8 +23,8 @@ router.get('/', function(req, res, next) {
     getAcervo.then(function(acervo){
         data.acervo = acervo;
         //buscar videos personalizados
-        getVideosPersonalizados.then(function(videos){
-            data.videosPersonalizados = videos;
+        getPersonalizados.then(function(videos){
+            data.personalizados = videos;
             res.render('index', data);  
         })
     }).catch(function(err) { 

@@ -1,9 +1,8 @@
 #popup-edit.popup.container_16
     .grid_10
-        img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fechar('edit');")
-        p Editar vídeo da playlist
+        img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fecharPopup('edit');")
+        p.titulo Editar vídeo da playlist
         .container_10 
-            p#status-popup-edit.status.grid_4 Vídeo carregando, aguarde...
             video.previa#previa-popup-edit(
                 controls, 
                 data-status="status-popup-edit"

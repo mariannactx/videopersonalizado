@@ -1,106 +1,66 @@
 header{
-    padding: 20px 0;
-    border-bottom: 1px solid #000;
+    height: 50px;
+    border-bottom: 1px solid #353535;
+    background-color: #353535;
+    padding: 10px 0;
 }
 
-#banner{
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    height: 130px;
-}
-
-h2 {
-    line-height: 130px;
-    margin: 0;
-}
-
-#logo{
-    background-color: rgb(255, 255, 255);
-    height:130px;
+header > div{
+    height: 30px;
     display: flex;          /* Tags para posicionar no centro da div*/
     display: -webkit-flex; /* Garante compatibilidade com navegador Safari. */
     justify-content: center;  align-items: center;
 }
 
-#logo img{
-    width: 65px;
-    height: 85px
+header p {
+    padding: 15px;
+    margin: 0;
+    color: white;
+    font-size: 18px;   
+    font-weight: 600px;
 }
 
-p{ 
+#logo{
+    width: 25px;
+    height: 30px
+}
+
+p.titulo{ 
     margin: 1em 0;
     font-weight: 600;
 }
 
-.passo{
+#menu{
     background-color: rgb(255, 255, 255);
     text-align: center; 
     position: relative;
     clear:both;
-    border-bottom: 1px solid #000;
 }
 
-.passo .passo-body{
-    padding-bottom: 20px;
+.etapa{
+    margin: 0 auto;
+    display: block;
+    float: none;
+    padding: 15px 0;
 }
-.clear{
-    clear:both;
+
+.scroll{
+    height: 267px;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .video{
     position: relative;
-    background-color: #DDDDDD;
-    padding-bottom: 10px;
+    background-color: #fff;
+    padding-bottom: 10px
 }
 
-.exibir{
-        width: 80px; height: 30px;
-        border-radius: 6px; border: none;
-        background: #6A8AE5; color: white;
-        cursor: pointer;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-size: 12px; padding: 1px;
-}  
-
-.exibir:hover{
-    background-color: rgb(16, 117, 163);
-}
-
-.adicionar{
-    border-radius: 6px;
-    background: #4DAA4D;
-    color: #fff;
-    cursor: pointer;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 12px;
-    padding: 8px;
-}    
-
-.adicionar:hover{
-    background-color: rgb(105, 199, 110);
-}
-
-.btn{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 14px;
-    border: none; 
-    border-radius: 10px;
-    cursor: pointer; 
-    background: rgba(206, 120, 36, 0.8); 
-    color: #fff;
-    text-transform: uppercase; 
-    font-weight: 600;   
-    text-decoration: none;
-    padding: 10px; 
-    position: relative;
-    display: inline-block;
-    margin: 10px; 
-    position: relative;
-    transition: all .5s;
-}
-
-.btn:hover{
-    background: rgba(206, 120, 36); 
+.video .img{
+    width:100%;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
 }
 
 #previa{
@@ -114,36 +74,17 @@ p{
     margin-left: auto;       
 }
 
-.titulo input, .descricao textarea{
+#titulo input, #descricao textarea{
     width: 600px; 
     padding: 0 10px 10px 10px; 
     border: thin solid;
 }
 
-.descricao textarea{
+#descricao textarea{
     height: 80px;
     line-height: 20px; 
 }
 
-
-#baixar{
-    background: #5FDD5F;
-    color: white; 
-}
-
-#baixar:hover{
-    background-color: rgb(10, 145, 75);
-}
-
-.finalizar{
-    background: #f1f1f1;
-    color: rgb(78, 78, 78);
-}
-
-.finalizar:hover{
-    background-color: rgb(170, 160, 160); 
-    color: white;
-}
 
 /*Css dos Pop-Ups*/
 .popup{
@@ -165,26 +106,6 @@ p{
     padding: 20px 0;
     float: none;
     display: inline-block;
-}
-
-label.grid_4 {
-    margin: 0 10px;
-}
-
-#upload{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 10px;
-    border: none; background: #6A8AE5;
-    color: white; 
-    cursor: pointer;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-#upload:hover{
-    background-color: rgb(16, 117, 163);
 }
 
 .status{
@@ -254,12 +175,19 @@ a.seta.collapsed {
 }
 
 /* record */
-.progress{
-    border: 1px solid;
-}
 
 #progress{
-    position: relative;
+    width: 100%;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #8888f7;
+}
+
+#progress div{
+    width: 50%;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #5050bb;
 }
 
 #canvas, #merge{
@@ -281,13 +209,15 @@ a.seta.collapsed {
 }
 
 #timeline{
-    width: 100%;
     height: 150px;
-    margin: 20px 0 0 0;
+    padding: 10px;
+    margin: 20px auto;
+    float: none;
     border-radius: 10px; 
     border: 1px solid #000;
 
     display: flex;
+
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -316,6 +246,68 @@ a.seta.collapsed {
 #timeline > div > .fa-edit {
     top: calc(50% - 6pt);
     left: calc(50% - 6pt);
+}
+
+.img-card{
+    background-color: rgb(255, 255, 255);
+    width: 180px;
+    height: 70px;
+}
+
+.card{
+    width: 180px; 
+    height: 165px;
+    background-color: white;
+    position: relative; 
+    margin-left: 35px;
+}
+
+.aba{
+    background-color: #ebebeb;
+    position: relative;
+    text-align: center; 
+    clear:both;
+}
+
+#aba-2{
+    display: none
+}
+
+/* Botões das divs principais (Blocos) */
+.btn{
+    padding: 10px; 
+    display: inline-block;
+    margin: 0 10px 10px 10px;
+    border: none; 
+    border-radius: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14px;
+    color: #fff;
+    background: rgba(206, 120, 36, 0.8); 
+    text-transform: uppercase; 
+    text-decoration: none;
+    cursor: pointer; 
+    transition: all .5s;
+}
+
+#upload{
+    background: #fff;
+    color: #000; 
+}
+
+#gerar{
+    background-color: rgb(255, 130, 0);
+    color: white;
+    border-radius: 8px;
+    width: 140px;
+}
+
+#gerar:hover{
+    background-color: rgb(255, 161, 61);
+}
+
+#gerar:active{
+    background-color: rgb(184, 95, 0);
 }
 
 .btn-info {
@@ -354,7 +346,6 @@ a.seta.collapsed {
     border-color: #1a873a
 }
 
-
 .btn-danger {
     color: #fff;
     background-color: #f56200;
@@ -365,4 +356,45 @@ a.seta.collapsed {
     color: #fff;
     background-color: #cf4c00;
     border-color: #cf4c00
+}
+
+.btn.main{
+    border: medium solid black;
+    background: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 0;
+}
+
+.btn.main:hover, .btn.main.active{
+    background: black;
+    color: white;
+}
+
+.adicionar{
+    background: #5a8ae8;
+    color: #fff;
+}    
+
+.adicionar:hover{
+    background-color: #6A8AE5;
+}
+
+#baixar{
+    background: #5FDD5F;
+    color: white; 
+}
+
+#baixar:hover{
+    background-color: rgb(10, 145, 75);
+}
+
+.finalizar{
+    background: #f1f1f1;
+    color: rgb(78, 78, 78);
+}
+
+.finalizar:hover{
+    background-color: rgb(170, 160, 160); 
+    color: white;
 }

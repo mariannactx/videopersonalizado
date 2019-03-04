@@ -1,0 +1,288 @@
+b{
+    font-size: 12px;
+}
+small{
+    position: relative;
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+a, a:hover{
+    color: inherit;
+}
+
+a:link{
+    text-decoration: none;
+}
+/*Blocos precisam ser excludentes após apertado o botão. Ainda não implementado*/
+
+
+/*Imagens dos cards de vídeo*/
+
+#carregamento{
+    position: relative;
+    text-align: center;
+    background: #EAEAEA;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: auto;
+}
+
+#previa{
+    height: auto;
+    width: 430px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    margin-left: auto;
+}
+
+#form{
+    font-size: 14px;
+    position: relative;
+    margin-left: auto;
+    left: 50%;
+    transform: translate(-50%, 0%)
+}
+
+
+#baixar{
+    background: #5FDD5F;
+    color: white;
+    width: 80px;
+}
+
+#baixar:hover{
+    background-color: rgb(10, 145, 75);
+}
+#baixar:active{
+    background-color: green
+}
+
+.finalizar{
+    background: #f1f1f1;
+    border: 2px solid black;
+    color: rgb(78, 78, 78);
+}
+
+.finalizar:hover{
+    background-color: rgb(170, 160, 160); 
+    color: white;
+}
+.finalizar:active{
+    background-color: rgb(112, 112, 112);
+}
+
+.salvar{
+    background-color: rgb(170, 160, 160); 
+    color: white;
+    width: 80px;
+}
+
+.salvar:hover{
+    background: #cfcdcd;
+    color: rgb(78, 78, 78);
+}
+.salvar:active{
+    background-color: rgb(60, 60, 50);
+}
+/*Css dos Pop-Ups*/
+.popup{
+    position: fixed;
+    top: 0;   bottom: 0;
+    left: 0;  right: 0;
+    margin: auto;
+    height: 550px; width: 700px;
+    text-align: center;border-radius: 10px;
+    border: solid 1px rgb(143, 143, 143);
+    display: none;
+    background-color: white;
+}
+#CardPopup2{
+    height: 350px; width: 500px;
+    border: solid 2px #DDDDDD;
+    background-color: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    margin-left: auto;
+}
+#CardPopup3{
+    height: 350px;  width: 500px;
+    background-color: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -60%);
+    margin-left: auto;
+}
+#imgPopup2, #imgPopup3{
+    width: 500px;  height: 250px; border:none 1px solid
+}
+#btnPopup2, #btnPopup3{
+    margin-top: 50px;
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+
+/*Daqui pra baixo nada disso foi utilizado, deixei apenas para o caso você precise utilizar*/
+label.grid_4 {
+    margin: 0 10px;
+}
+
+.status{
+    display: none;
+}
+
+.previa{
+    max-width: 80%;
+    height: 300px;
+}
+.sair{
+    float: right;
+    padding: 0;
+}
+
+.sair {position: relative;right: 20px;}
+
+.adicionarPopup{
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    border: none; 
+    background: #4DAA4D;
+    color: white; 
+    cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 18px;
+}  
+
+.adicionarPopup:hover{
+    background-color: rgb(105, 199, 110);
+}
+
+#minutagem {
+    float:none;
+    margin: 0 auto;
+}
+
+#minutagem label {
+    margin: 0 10px;
+    width: 100px;
+}
+
+
+/* record */
+.progress{
+    border: 1px solid;
+}
+
+#progress{
+    position: relative;
+}
+
+#canvas, #merge{
+    position: absolute;
+    left: -3840px;
+}
+
+.container {
+    padding-top: 80px;
+}
+
+#buttons{
+    margin: 10px 0 0 0;
+}
+
+#recording{
+    margin: 0 auto;
+    display: block; 
+}
+
+#timeline{
+    width: 100%;
+    height: 150px;
+    margin: 20px 0 0 0;
+    border-radius: 10px; 
+    border: 1px solid #000;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#timeline > div{
+    flex: 1 1 auto;
+    max-width: 50%;
+    height: 100%;
+    background: #000;
+    border-radius: 10px; 
+    position: relative;
+}
+
+#timeline > div > .fas {
+    position: absolute;
+    color: #fff;
+    font-size: 20pt;
+}
+
+#timeline > div > .fa-times {
+    top: 15px;
+    right: 20px;
+}
+
+#timeline > div > .fa-edit {
+    top: calc(50% - 6pt);
+    left: calc(50% - 6pt);
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #369;
+    border-color: #369;
+}
+
+.btn-info:hover {
+    color: #fff;
+    background-color: #29537c;
+    border-color: #264d73
+}
+
+.btn-warning {
+    color: #222;
+    background-color: #F5E625;
+    border-color: #F5E625
+}
+
+.btn-warning:hover {
+    color: #222;
+    background-color: #e9d90b;
+    border-color: #ddce0a
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #22B24C;
+    border-color: #22B24C
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #1c923e;
+    border-color: #1a873a
+}
+
+
+.btn-danger {
+    color: #fff;
+    background-color: #f56200;
+    border-color: #f56200
+}
+
+.btn-danger:hover {
+    color: #fff;
+    background-color: #cf4c00;
+    border-color: #cf4c00
+}

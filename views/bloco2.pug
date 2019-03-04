@@ -1,0 +1,31 @@
+#aba-2.aba.container_16
+    .grid_16
+        p.titulo Escolha vídeos sem personalização
+        if acervo.length
+                each video in acervo
+                    .video.grid_4
+                        div.img(style="background-image:url('/videos/"+video.thumb+"');")
+                        b=video.titulo
+                        p=video.descricao
+                        div
+                            input.btn.adicionar(
+                                type='submit', 
+                                name='Selecionar', 
+                                value='Selecionar' 
+                                onclick="finaizarAcervo('"+video.arquivo+"')"
+                            )
+    .grid_16
+        p.titulo Escolha vídeos personalizados
+        if personalizados.length
+                each video in personalizados
+                    .video.grid_4
+                        div.img(style="background-image:url('/videos/"+video.thumb+"');")
+                        b=video.titulo
+                        p=video.descricao
+                        div
+                            input.btn.adicionar(
+                                type='submit', 
+                                name='Selecionar', 
+                                value='Selecionar' 
+                                onclick="finalizarSalvo('"+video.arquivo+"')"
+                            )
