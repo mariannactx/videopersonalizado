@@ -1,24 +1,25 @@
+#popup-progress.popup
+    div
+        p#progress-label Renderizando vídeo...
+        div#progress 
+            div#progress-bar
+
 #popup-gerar.popup.grid_16
     .grid_10
         img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fecharPopup('gerar');")
-        
-        p Renderizando vídeo...
-        div#progress 
-            div
 
-
-        .container_10
+        #video-personalizado.container_10
             p.titulo Prévia do Vídeo Final
             video#previa(controls='')
-
-        #form.container_10
-            form(name='Formulario', action='')
-                #titulo
-                    input(type='text', placeholder='Insira um título para seu vídeo personalizado', required='required')
-                #descricao
-                    textarea(type='text', placeholder='Insira uma breve descrição para seu vídeo personalizado', required='required')
-                .grid_16
-                    input.btn.salvar(type='submit', name='Salvar', value='Salvar')
-                    a#baixar.btn Baixar
-                    input.btn.finalizar(type='reset', name='FinalizarEdicao', value='Finalizar Edição')
+            #form.grid_9
+                form(name='Formulario', action='')
+                    
+                    input#titulo(type='text', name="titulo" placeholder='Insira um título para seu vídeo personalizado', required='required')
+                    
+                    textarea#descricao(type='text', name="descricao" placeholder='Insira uma breve descrição para seu vídeo personalizado', required='required')
+                    
+                    div
+                        input.btn.btn-gray(type='submit', value='Salvar')
+                        button.btn.btn-green#baixar Baixar
+                        input.btn.btn-white(type='reset', value='Finalizar Edição')
 

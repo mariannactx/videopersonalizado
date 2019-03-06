@@ -10,14 +10,14 @@
         #minutagem.grid_5
             .container_5
                 label Tempo inicial
-                input#inicio-popup-edit(type="time" name="inicio")
+                input#inicio-popup-edit.inicio(type="time" name="inicio")
             .container_5
                 label Tempo final
-                input#final-popup-edit(type="time" name="final")
+                input#final-popup-edit.final(type="time" name="final")
 
             input#video-id-popup-edit(type="hidden")
         .container_10
-            input.adicionarPopup(
+            input(
                 type='submit', 
                 value='Salvar',
                 onclick='save()'

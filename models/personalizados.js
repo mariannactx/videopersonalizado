@@ -10,10 +10,7 @@ var findOne = function(id){
     return db.doQuery(query);
 }
 
-var insertOne = function(req){
-    
-    var columns = [];
-    var values = [];
+var insertOne = function(vals){
     
     // var proc = new ffmpeg('public/videos/ferramentas_de_controle.mp4')
     
@@ -31,14 +28,18 @@ var insertOne = function(req){
     //     size: '320x240'
     // })
 
+    var columns = [];
+    var values = [];
+
     cols.forEach(function(col){
-        if(req.body[col]){
+        if(vals[col]){
             columns.push(col);
-            values.push(req.body[col]);
+            values.push(vals[col]);
         }
     });
-    
+   
     var query = db.getQuery.insertOne(table, columns, values);
+    
     return db.doQuery(query)
     .then(function(result){
         console.log(result);

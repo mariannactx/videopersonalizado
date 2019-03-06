@@ -1,14 +1,16 @@
-var canvas;
 window.addEventListener("load", function(){
-    canvas = byId("canvas");
-    
     byId("upload").addEventListener("change", setPreviaUpload);
 
-    // var popups = ['upload', 'edit'];
-    // popups.forEach(function(popup){
-    //     byId("previa-popup-" + popup).addEventListener("canplaythrough", playPrevia);
-    // })
-    
+    var popups = ['upload', 'edit', 'acervo', 'add-acervo'];
+    popups.forEach(function(popup){
+        byId("previa-popup-" + popup).addEventListener("canplaythrough", function (e){
+            byId(e.target.dataset.status).style.display = "none";
+            e.target.play();   
+        });
+    })
+
+    byId("form").addEventListener("submit", salvarPersonalizado);
+    byId("form").addEventListener("reset", finalizarEdicao);
 })
 
 // Abas
@@ -25,9 +27,12 @@ function abrirAba(abaId){
 //Pop-ups
 function abrirPopup(popup){
     byId("popup-" + popup).style.display = 'block';
+    byId("background-popup").setAttribute("class","show");
 }
 
 function fecharPopup(popup){
+    byId("background-popup").setAttribute("class","");
+    
     byId("popup-" + popup).style.display = 'none';
 
     if(byId("previa-popup-" + popup))
@@ -40,25 +45,28 @@ function fecharPopup(popup){
         byId("final-popup-" + popup).value = "";
 }
 
-function setPreviaSalvos(video){
-    finalizar("/videos/" + video);
+var previas = {acervo: []}
+function exibirAcervo(video){
+    setPreviaAcervo('acervo', video);
 }
 
-var previas = {acervo: [], upload: []}
-function setPreviaAcervo(video){
-    console.log(video, previas.acervo[video.id]);
-    
+function addAcervo(video){
+    setPreviaAcervo('add-acervo', video);
+}
+
+function setPreviaAcervo(popup, video){
     //se vídeo já foi visualizado, exibe no popup
     if(previas.acervo[video.id]){
-        byId("previa-popup-acervo").dataset.id = video.id;
-        setPrevia('acervo', previas.acervo[video.id].src);
-        abrirPopup('acervo');
+        byId("previa-popup-" + popup).dataset.id = video.id;
+        setPrevia(popup, previas.acervo[video.id]);
         return true;
     }
+
+    abrirPopup(popup);
     
     // exibe status carregamento do vídeo do acervo
-    byId("status-popup-acervo").style.display = "block";   
-    var progressBar = byId("progress-acervo");
+    byId("status-popup-" + popup).style.display = "block";   
+    var progressBar = byId("progress-" + popup);
     
     var path = "/videos/" + video.arquivo;
 
@@ -75,14 +83,10 @@ function setPreviaAcervo(video){
             var blob = this.response;
             var src = URL.createObjectURL(blob);
 
-            previas.acervo[video.id] = {
-                path: path,
-                blob: blob,
-                src: src
-            };
+            previas.acervo[video.id] = src;
             
-            byId("previa-popup-acervo").dataset.id = video.id;
-            setPrevia('acervo', src);
+            byId("previa-popup-" + popup).dataset.id = video.id;
+            setPrevia(popup, src);
             
             return true;
         }
@@ -101,7 +105,7 @@ function setPreviaAcervo(video){
         }
     }
 
-    req.onloadstart = function (e) {
+    req.onloadstart = function () {
         progressBar.value = 0;
     }
 
@@ -110,89 +114,65 @@ function setPreviaAcervo(video){
     }
 
     req.send();
-
-    abrirPopup('acervo');
 }
 
 function setPreviaUpload(event){
-    byId("previa-popup-upload").dataset.id = previas.upload.length;
-    
     var tmppath = URL.createObjectURL(event.target.files[0]);
-    
-    previas.upload.push({
-        blob: event.target.files[0],
-        path: tmppath
-    });
-    
     setPrevia('upload', tmppath);
-    abrirPopup('upload');
+    event.target.value = "";    
 }
 
 function setPrevia(popup, src){
     byId("previa-popup-" + popup).src = src;
     if(byId("status-popup-" + popup))
-        byId("status-popup-" + popup).style.display = "block";   
-}
-
-function playPrevia(e){
-    byId(e.target.dataset.status).style.display = "none";
-    e.target.play();   
+        byId("status-popup-" + popup).style.display = "block";
+        
+    abrirPopup(popup); 
 }
 
 //Ações da timeline: add, remove, edit, save, finish
 var timeline = { "videos": [], "total": 0};
 function add(popup){
 
-    var src    = byId("previa-popup-" + popup).src;
+    var path   = byId("previa-popup-" + popup).src;
     var inicio = byId("inicio-popup-" + popup).value;
-    var final  = byId( "final-popup-" + popup).value;
+    var final  = byId("final-popup-"  + popup).value;
     
     var video = document.createElement("div");
-
     video.id = timeline.videos.length;
-    video.dataset.src    = src;
-    video.dataset.inicio = inicio;
-    video.dataset.final  = final;
     
-    var inicioInS = toSeconds(inicio);
-    var finalInS  = toSeconds(final)
-    var duracao = finalInS - inicioInS;
-
-    if(isNaN(duracao) || duracao < 0)
-        duracao = null;
-
-    var previaId = byId("previa-popup-" + popup).dataset.id;
-    
-    setTimelineVideo(video.id, {
-        "src"      : src + "#t=" + inicio + "," + final,
-        "offset"   : inicioInS,
-        "duration" : duracao,
-        "path"     : previas[popup][previaId].path,
-        "blob"     : previas[popup][previaId].blob
+    setVideoProps(video.id, {
+        "path"     : path,
+        "src"      : `${path}#t=${inicio},${final}`,
+        "inicio"   : inicio,
+        "final"    : final,
+        "offset"   : toSeconds(inicio),
+        "duration" : getDuracao(inicio, final),
     });
     
     var editIcon = document.createElement("i");
     editIcon.setAttribute("class", "fas fa-edit");
     editIcon.addEventListener("click", edit);
-    video.appendChild(editIcon);
- 
+    
     var removeIcon = document.createElement("i");
     removeIcon.setAttribute("class", "fas fa-times");
     removeIcon.addEventListener("click", remove);
+    
+    video.appendChild(editIcon);
     video.appendChild(removeIcon);
-
-    fecharPopup(popup);    
-
+    
     byId("timeline").appendChild(video);
+
+    fecharPopup(popup);
 }
 
-// confs: src, offset, duration, path, blob
-function setTimelineVideo(id, confs){
-    timeline.videos[id] = {}
+// confs: path, src, inicio, final, offset, duration
+function setVideoProps(id, confs){
+    if(!timeline.videos[id])
+        timeline.videos[id] = {}
 
-    for(var c in confs){
+    for(var c in confs)
         timeline.videos[id][c] = confs[c]
-    }
 }
 
 function remove(e){
@@ -202,37 +182,53 @@ function remove(e){
 }
 
 function edit(e){
-
     var video = e.target.parentNode;
     
     byId("video-id-popup-edit").value = video.id;
-    byId("inicio-popup-edit").value   = video.dataset.inicio;
-    byId("final-popup-edit").value    = video.dataset.final;
-    
-    //to do: edit
-    setPrevia('edit', video.dataset.src);
-
-    abrirPopup('edit');
+    byId("inicio-popup-edit").value   = timeline[video.id].inicio;
+    byId("final-popup-edit").value    = timeline[video.id].final;
+  
+    setPrevia('edit', timeline[video.id].path);
 }
 
 function save(){
-    var video = byId(byId("video-id-popup-edit").value);
+    var videoId = byId("video-id-popup-edit").value;
+    var inicio = byId("inicio-popup-edit").value;
+    var final = byId("final-popup-edit").value;
+    
+    var src = `${timeline[videoId].path}#t=${inicio},${final}`;
 
-    video.dataset.inicio = byId("inicio-popup-edit").value;
-    video.dataset.final = byId("final-popup-edit").value;
+    setVideoProps(videoId, {
+        "src"      : src,
+        "inicio"   : inicio,
+        "final"    : final,
+        "offset"   : toSeconds(inicio),
+        "duration" : getDuracao(inicio, final)
+    });
 
     fecharPopup("edit");
 }
 
 function finish(video){
-    
     byId("previa").src = video;
     byId("baixar").href = video;
-
+    fecharPopup("progress");
+    abrirPopup("gerar")
 }
 
 function byId(id){
     return document.getElementById(id);
+}
+
+function getDuracao(inicio, final){
+    var inicioInS = toSeconds(inicio);
+    var finalInS  = toSeconds(final)
+    var duracao = finalInS - inicioInS;
+
+    if(isNaN(duracao) || duracao < 0)
+        duracao = null;
+
+    return duracao;
 }
 
 function toSeconds(string) { 
@@ -248,4 +244,37 @@ function toSeconds(string) {
     }
 
     return s;
+}
+
+//Ações do popup de gerar vídeo: salvar personalizado, baixar, finalizar edição
+function salvarPersonalizado(e){
+    e.preventDefault();
+
+    var reader = new FileReader();
+    reader.onload = function() {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if ((request.readyState == 4) && (request.status == 200))
+                alert(JSON.parse(request.response));
+        }
+    
+        var dataUrl = reader.result;
+        var base64 = dataUrl.split(',')[1];
+    
+        var timelineData = new FormData();
+        timelineData.append('base64',  base64);
+        timelineData.append('titulo',    byId("titulo").value);
+        timelineData.append('descricao', byId("descricao").value);
+        
+        request.open("POST", "/salvar-video", true);
+        request.send(timelineData);
+    
+    };
+    console.log(timeline.blob);
+    reader.readAsDataURL(timeline.blob);
+    return false;
+}
+
+function finalizarEdicao(){
+    location.reload();
 }

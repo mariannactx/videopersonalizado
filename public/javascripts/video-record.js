@@ -6,7 +6,6 @@ function recordVideos(){
         for(var v in videos){
             var blobs = await cutVideo(videos[v]);
             timeline.videos[v].cut = getChunksUrl(blobs);
-            timeline.total += videos[v].duration;
         }
 
         //mesclar videos usando canvas
@@ -36,7 +35,7 @@ async function cutVideo(video){
 }
 
 async function mergeVideos(){
-    var canvasStream = canvas.captureStream(60);
+    var canvasStream = byId("canvas").captureStream(60);
     var videoTrack = canvasStream.getVideoTracks()[0];
     var stream = new MediaStream();
     stream.addTrack(videoTrack);

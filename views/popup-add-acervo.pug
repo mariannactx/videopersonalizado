@@ -1,0 +1,25 @@
+#popup-add-acervo.popup.container_16
+    .grid_10
+        img#sair.sair(src='images/sair.png', width='25px', height='25px' onclick="fecharPopup('add-acervo');")
+        p.titulo Adicionar vídeo institucional
+        .container_10 
+            p#status-popup-add-acervo.status.grid_4 Vídeo carregando, aguarde... 
+                progress#progress-add-acervo
+            video.previa#previa-popup-add-acervo(
+                controls, 
+                data-status="status-popup-add-acervo"
+            )
+        #minutagem
+            div
+                label Tempo inicial
+                input#inicio-popup-add-acervo.inicio(type="time" name="inicio")
+            div
+                label Tempo final
+                input#final-popup-add-acervo.final(type="time" name="final")
+        
+        .container_10
+            input.btn.btn-green(
+                type='submit', 
+                value='Adicionar',
+                onclick='add("add-acervo")'
+            )

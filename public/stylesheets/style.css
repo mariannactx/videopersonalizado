@@ -63,40 +63,53 @@ p.titulo{
     background-position: center;
 }
 
+.video .descricao{
+    max-width: 100%;
+    max-height: 25px;
+    overflow: hidden
+}
+
 #previa{
     height: auto;
     width: 430px;
     text-align: center;
+    border: 1px solid #000;
 }
 
 #form{
+    margin: 0 auto;
+    float: none;
+    display: block;
     font-size: 14px;
-    margin-left: auto;       
+    margin-left: auto;      
 }
 
-#titulo input, #descricao textarea{
-    width: 600px; 
-    padding: 0 10px 10px 10px; 
-    border: thin solid;
+#titulo, #descricao{
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #ccc;
+    margin: 4px;
 }
 
-#descricao textarea{
+#descricao{
     height: 80px;
     line-height: 20px; 
 }
 
-
 /*Css dos Pop-Ups*/
 .popup{
-    position: fixed;
+    height: fit-content;
+    margin: auto;
+    display: none;
+    text-align: center;
+
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
-    height: 550px;
-    display: none;
-    text-align: center;
+    
+    position: fixed;
+    z-index: 2;
 }
 
 .popup > div{
@@ -108,6 +121,45 @@ p.titulo{
     display: inline-block;
 }
 
+#background-popup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0);
+    transition: background .5s;
+    top: 0;
+    left: 0;
+}
+
+#background-popup.show{
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+#popup-progress > div{
+    width: 80%;
+    padding: 20px;
+}
+
+#progress-label{
+    margin: 0;
+}
+
+#progress{
+    width: 100%;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #8888f7;
+    overflow: hidden;
+}
+
+#progress-bar{
+    width: 0;
+    height: 20px;
+    background-color: #5050bb;
+    transition: width .5s;
+}
+
 .status{
     display: none;
 }
@@ -117,56 +169,17 @@ p.titulo{
     min-width: 260px;
     height: 300px;
 }
-.sair, .seta{
+
+.sair {
+    position: relative;
     float: right;
     padding: 0;
-}
-
-.sair {position: relative;right: 20px;}
-
-.seta{
-    width: 55px;
-    height: 45px;
-    background-image: url(../images/seta2.png);
-    background-size: 55px 45px;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: inline-block;
-    margin-top: -50px;
-    padding: 0;
-    transition: all .5s;
-    -moz-transform: scaleY(-1);
-    -o-transform: scaleY(-1);
-    -webkit-transform: scaleY(-1);
-    transform: scaleY(-1);
-}
-
-a.seta.collapsed {
-    -moz-transform: scaleY(1);
-    -o-transform: scaleY(1);
-    -webkit-transform: scaleY(1);
-    transform: scaleY(1);
-}   
-
-.adicionarPopup{
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 6px;
-    border: none; 
-    background: #4DAA4D;
-    color: white; 
-    cursor: pointer;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 18px;
-}  
-
-.adicionarPopup:hover{
-    background-color: rgb(105, 199, 110);
+    right: 20px;
 }
 
 #minutagem {
     float:none;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 #minutagem label {
@@ -175,37 +188,9 @@ a.seta.collapsed {
 }
 
 /* record */
-
-#progress{
-    width: 100%;
-    height: 20px;
-    border-radius: 20px;
-    background-color: #8888f7;
-}
-
-#progress div{
-    width: 50%;
-    height: 20px;
-    border-radius: 20px;
-    background-color: #5050bb;
-}
-
 #canvas, #merge{
     position: absolute;
     left: -3840px;    
-}
-
-.container {
-    padding-top: 80px;
-}
-
-#buttons{
-    margin: 10px 0 0 0;
-}
-
-#recording{
-    margin: 0 auto;
-    display: block; 
 }
 
 #timeline{
@@ -248,25 +233,12 @@ a.seta.collapsed {
     left: calc(50% - 6pt);
 }
 
-.img-card{
-    background-color: rgb(255, 255, 255);
-    width: 180px;
-    height: 70px;
-}
-
-.card{
-    width: 180px; 
-    height: 165px;
-    background-color: white;
-    position: relative; 
-    margin-left: 35px;
-}
-
 .aba{
     background-color: #ebebeb;
     position: relative;
     text-align: center; 
     clear:both;
+    padding-bottom: 20px;
 }
 
 #aba-2{
@@ -282,119 +254,84 @@ a.seta.collapsed {
     border-radius: 10px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 14px;
-    color: #fff;
-    background: rgba(206, 120, 36, 0.8); 
     text-transform: uppercase; 
     text-decoration: none;
     cursor: pointer; 
     transition: all .5s;
+
+    background: white;
+    color: black;
 }
 
-#upload{
-    background: #fff;
-    color: #000; 
+.btn.main{
+    border: medium solid black;
+    font-weight: bold;
+    border-radius: 0;
+}
+
+.btn:hover, .btn.main.active{
+    background: black;
+    color: white;
+}
+
+.btn-white{
+    border: 1px solid #000;
+}
+
+.btn-blue{
+    background: #6A8AE5;
+    color: white !important;
+}
+
+.btn-blue:hover{
+    background-color: rgb(16, 117, 163);
+}
+
+.btn-blue:active{
+    background-color: #6A8AE5;
 }
 
 #gerar{
     background-color: rgb(255, 130, 0);
     color: white;
-    border-radius: 8px;
-    width: 140px;
 }
 
-#gerar:hover{
-    background-color: rgb(255, 161, 61);
-}
-
-#gerar:active{
+#gerar:active {
     background-color: rgb(184, 95, 0);
 }
 
-.btn-info {
-    color: #fff;
-    background-color: #369;
-    border-color: #369;
+#gerar:hover {
+    background-color: rgb(255, 161, 61);
 }
 
-.btn-info:hover {
-    color: #fff;
-    background-color: #29537c;
-    border-color: #264d73
-}
-
-.btn-warning {
-    color: #222;
-    background-color: #F5E625;
-    border-color: #F5E625
-}
-
-.btn-warning:hover {
-    color: #222;
-    background-color: #e9d90b;
-    border-color: #ddce0a
-}
-
-.btn-success {
-    color: #fff;
-    background-color: #22B24C;
-    border-color: #22B24C
-}
-
-.btn-success:hover {
-    color: #fff;
-    background-color: #1c923e;
-    border-color: #1a873a
-}
-
-.btn-danger {
-    color: #fff;
-    background-color: #f56200;
-    border-color: #f56200
-}
-
-.btn-danger:hover {
-    color: #fff;
-    background-color: #cf4c00;
-    border-color: #cf4c00
-}
-
-.btn.main{
-    border: medium solid black;
-    background: white;
-    color: black;
-    font-weight: bold;
-    border-radius: 0;
-}
-
-.btn.main:hover, .btn.main.active{
-    background: black;
+.btn-green{
+    background: #5FDD5F;
     color: white;
 }
 
-.adicionar{
-    background: #5a8ae8;
-    color: #fff;
-}    
-
-.adicionar:hover{
-    background-color: #6A8AE5;
-}
-
-#baixar{
-    background: #5FDD5F;
-    color: white; 
-}
-
-#baixar:hover{
+.btn-green:hover{
     background-color: rgb(10, 145, 75);
 }
 
-.finalizar{
-    background: #f1f1f1;
+.btn-green:active{
+    background-color: #4DAA4D;
+}
+
+.btn-gray{
+    background-color: rgb(170, 160, 160);
+    color: white;
+}
+
+.btn-gray:hover{
+    background: #cfcdcd;
     color: rgb(78, 78, 78);
 }
 
-.finalizar:hover{
-    background-color: rgb(170, 160, 160); 
-    color: white;
+.inicio, .final{
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 5px;
+    padding: 2px 5px;
 }
+

@@ -1,6 +1,5 @@
 "use strict";
 
-var canvas;
 var currentMs = 0;
 async function render(){
            
@@ -9,13 +8,21 @@ async function render(){
         return false;
     }
     
-    abrirPopup("gerar")
-        
+    abrirPopup("progress")
+    
+    //calcular tempo total da renderização
+    var videos = timeline.videos; 
+    for(var v in videos){
+      timeline.total += videos[v].duration;
+    }
+
     // iniciar barra de progresso 
-    var progressBar = byId("progress-bar");    
-    var totalInMs = timeline.total * 3 * 1000;
+    var progressBar = byId("progress-bar");  
+    var totalInMs = timeline.total * 5 * 1000;
+    
     var progress = setInterval(function(){
         currentMs += 500;
+        console.log(currentMs, totalInMs);
         progressBar.style.width = (currentMs * 100 / totalInMs) + "%";
     }, 500);
     
@@ -35,6 +42,7 @@ async function render(){
 
         clearInterval(progress);
         var src = getChunksUrl(result);
+        timeline.blob = result[0];
         finish(src);
     });
 };

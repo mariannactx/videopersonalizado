@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 
 var app = express();
 
@@ -11,8 +12,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ 
+    parameterLimit: 10,
+    limit: 100000000, //100mb
+    extended: true
+})); // to support URL-encoded bodies
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
